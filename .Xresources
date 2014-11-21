@@ -83,7 +83,7 @@ URxvt*intensityStyles:         false
 
 URxvt*depth: 32
 URxvt.scrollBar: false
-URxvt*saveLines: 100000
+URxvt*saveLines: 1000
 URxvt*loginShell: true
 URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true
@@ -114,8 +114,8 @@ URxvt*keysym.M-C-S-V: perl:clipboard:paste_escaped
 
 URxvt*iso14755: False
 
-URxvt.keysym.C-Up:
-URxvt.keysym.C-Down: 
+!URxvt.keysym.C-Up:
+!URxvt.keysym.C-Down:
 
 URxvt.keysym.C-S-Up:   perl:font-size:increase 
 URxvt.keysym.C-S-Down:   perl:font-size:decrease 
