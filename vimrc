@@ -50,40 +50,54 @@ set cursorline
 
 set list listchars=tab:▸\ ,eol:¬
 
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+"
+" interactive mode mappings (imap)
+"
 
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-h> :wincmd h<CR>
-nmap <silent> <A-l> :wincmd l<CR>
+inoremap jj <esc>
 
-nmap <silent> <A-K> :wincmd K<CR>
-nmap <silent> <A-J> :wincmd J<CR>
-nmap <silent> <A-H> :wincmd H<CR>
-nmap <silent> <A-L> :wincmd L<CR>
+"
+" normal mode mappings (nmap)
+"
+nnoremap <silent> p :cp<CR>
+nnoremap <silent> n :cn<CR>
 
-nmap <silent> c :wincmd c<CR>
-nmap <silent> v :wincmd v<CR>
-nmap <silent> s :wincmd s<CR>
-nmap <silent> o :wincmd o<CR>
+" Windows managment
 
-nmap <silent> k :wincmd k<CR>
-nmap <silent> j :wincmd j<CR>
-nmap <silent> h :wincmd h<CR>
-nmap <silent> l :wincmd l<CR>
+nnoremap <silent> <A-Up> :wincmd k<CR>
+nnoremap <silent> <A-Down> :wincmd j<CR>
+nnoremap <silent> <A-Left> :wincmd h<CR>
+nnoremap <silent> <A-Right> :wincmd l<CR>
 
-nmap <silent> K :wincmd K<CR>
-nmap <silent> J :wincmd J<CR>
-nmap <silent> H :wincmd H<CR>
-nmap <silent> L :wincmd L<CR>
+nnoremap <silent> <A-k> :wincmd k<CR>
+nnoremap <silent> <A-j> :wincmd j<CR>
+nnoremap <silent> <A-h> :wincmd h<CR>
+nnoremap <silent> <A-l> :wincmd l<CR>
 
-nmap <silent> p :cp<CR>
-nmap <silent> n :cn<CR>
+nnoremap <silent> <A-K> :wincmd K<CR>
+nnoremap <silent> <A-J> :wincmd J<CR>
+nnoremap <silent> <A-H> :wincmd H<CR>
+nnoremap <silent> <A-L> :wincmd L<CR>
 
-" Tabs managment
+nnoremap <silent> c :wincmd c<CR>
+nnoremap <silent> v :wincmd v<CR>
+nnoremap <silent> s :wincmd s<CR>
+nnoremap <silent> o :wincmd o<CR>
+
+nnoremap <silent> k :wincmd k<CR>
+nnoremap <silent> j :wincmd j<CR>
+nnoremap <silent> h :wincmd h<CR>
+nnoremap <silent> l :wincmd l<CR>
+
+nnoremap <silent> K :wincmd K<CR>
+nnoremap <silent> J :wincmd J<CR>
+nnoremap <silent> H :wincmd H<CR>
+nnoremap <silent> L :wincmd L<CR>
+
+"
+" Tabs management
+"
+
 nmap <silent> <A-S-]> gt
 nmap <silent> <A-S-[> gT
 nmap <silent> <A-1> 1gt
@@ -116,10 +130,12 @@ nmap ,h :find %:t:r.h<CR>
 nmap ,H :sf %:t:r.h<CR>
 
 
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+nmap <leader>ew :e %%
+nmap <leader>es :sp %%
+nmap <leader>ev :vsp %%
+nmap <leader>et :tabe %%
+nmap <leader>erc :sp $MYVIMRC<CR>
+
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 call togglebg#map("<F5>")
