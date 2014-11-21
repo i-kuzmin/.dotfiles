@@ -4,21 +4,13 @@ execute pathogen#infect()
 " execute .vimrc in working directory
 set exrc
 
-
-"set t_Co=256
-"set t_AB=^[[48;5;%dm
-"set t_AF=^[[38;5;%dm
-
-"let g:lucius_no_term_bg=1
-"let g:lucius_use_bold=1
-"colorscheme lucius
+set textwidth=120
+set tabstop=4 shiftwidth=4 expandtab 
+set nowrap
 
 set hidden
 
 if has('gui_running')
-    "set guioptions-=T
-    "set guioptions-=m
-    "set guioptions-=r
     set guioptions=ai
     set background=light
     set guifont=DejaVu\ Sans\ Mono\ 8 
@@ -27,15 +19,21 @@ else
     "let g:solarized_termtrans = 1
 endif
 
-call togglebg#map("<F5>")
-syntax enable
+" Plugin configuration
+
+let g:tex_flavor = "latex"
+
+g:goog_user_conf = {
+    'langpair': 'en|ru', "language code iso 639-1
+    'cmd': 'node',
+    'v_key': 'T' "? define key in visual-mode (optional)
+}
+
 let g:solarized_hitrail=1
 let g:solarized_visibility="low"
-"let g:solarized_termcolors=256
-colorscheme solarized
 
-set tabstop=4 shiftwidth=4 expandtab 
-set nowrap
+syntax enable
+colorscheme solarized
 
 " Russian keymaps
 set keymap=russian-jcukenwin
@@ -49,13 +47,10 @@ set tags+=./%:p:t:r.tags
 filetype plugin on
 filetype indent on
 
-
 nohlsearch
 set incsearch
 set clipboard=unnamed
 set cursorline
-
-let g:tex_flavor = "latex"
 
 set list listchars=tab:▸\ ,eol:¬
 
@@ -125,7 +120,16 @@ nmap ,h :find %:t:r.h<CR>
 nmap ,H :sf %:t:r.h<CR>
 
 
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
+call togglebg#map("<F5>")
 map <F2> :set spell!<CR>
+
+"command! Highlihgt exe printf('match IncSearch /\<%s\>/', expand('<cword>'))
 
 " File type addons
 augroup filetype
@@ -137,5 +141,6 @@ augroup filetype
 augroup END
 
 augroup filetype
-  au! BufRead,BufNewFile *Makefile*     set filetype=make
+  au! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
+

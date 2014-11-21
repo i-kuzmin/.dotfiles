@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/vim-dispatch"]
 	path = .vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule ".vim/bundle/vim-translator"]
+	path = .vim/bundle/vim-translator
+	url = https://github.com/maksimr/vim-translator.git
