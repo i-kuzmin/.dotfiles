@@ -1,20 +1,18 @@
 #!/bin/bash
 ask()
 {
-	if [ ! -z "$force" ]; then
-		return 0;
-	fi
 	while true; do
-		echo -n -e "\r\n$1 (Yes/No/All): " > /dev/stderr
+		echo -n -e "\r\n$1 (Yes/No): " > /dev/stderr
 		read -n 1 input
-		if [ "$input" = "y" ] || [ "$input" = "Y" ]; then
+        input=${input,,}
+		if [ "$input" = "y" ]; then
 			echo "" > /dev/stderr
 			return 0
-		elif [ "$input" = "a" ] || [ "$input" = "A" ]; then
+		elif [ "$input" = "a" ]; then
 			force="true"
 			echo "" > /dev/stderr
 			return 0
-		elif [ "$input" = "n" ] || [ "$input" = "N" ]; then
+		elif [ "$input" = "n" ]; then
 			echo "" > /dev/stderr
 			return 1
 		fi
@@ -24,6 +22,7 @@ ask()
 for file in *; do
 	if [ "$file" = "$0" ]; then continue; fi
 	dotfile=~/.$file
+	file=$(pwd)/$file
 	if [ -L $dotfile ]; then
 	   	if [ "$(readlink $dotfile)" = $file ]; then
 			echo "Dotfile \"$dotfile\" already installed."
@@ -37,8 +36,9 @@ for file in *; do
 		fi
 	elif [ -e $dotfile ]; then
 		if $(ask "\"$dotfile\" exists. Owerwrite?"); then
-			mv -pr $dotfile $dotfile.bkp
-			ln -s $file $dotfile && echo "\"$dotfile\" installed. (backup to \"$dotfile.bkp\")"
+			mv $dotfile $dotfile.bkp &&
+			  ln -s $file $dotfile &&
+                echo "\"$dotfile\" installed. (backup \"$dotfile.bkp\")"
 		else
 			echo "Skip \"$dotfile\"."
 		fi
