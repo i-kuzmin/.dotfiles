@@ -1,0 +1,48 @@
+#!/bin/bash
+ask()
+{
+	if [ ! -z "$force" ]; then
+		return 0;
+	fi
+	while true; do
+		echo -n -e "\r\n$1 (Yes/No/All): " > /dev/stderr
+		read -n 1 input
+		if [ "$input" = "y" ] || [ "$input" = "Y" ]; then
+			echo "" > /dev/stderr
+			return 0
+		elif [ "$input" = "a" ] || [ "$input" = "A" ]; then
+			force="true"
+			echo "" > /dev/stderr
+			return 0
+		elif [ "$input" = "n" ] || [ "$input" = "N" ]; then
+			echo "" > /dev/stderr
+			return 1
+		fi
+	done;
+}
+
+for file in *; do
+	if [ "$file" = "$0" ]; then continue; fi
+	dotfile=~/.$file
+	if [ -L $dotfile ]; then
+	   	if [ "$(readlink $dotfile)" = $file ]; then
+			echo "Dotfile \"$dotfile\" already installed."
+		else
+			if $(ask "\"$dotfile\" already exists (points to \"$(readlink $dotfile)\"). Owerwrite?" ); then
+				rm $dotfile
+				ln -s $file $dotfile && echo "\"$dotfile\" successfully installed."
+			else
+				echo "Skip \"$dotfile\"."
+			fi
+		fi
+	elif [ -e $dotfile ]; then
+		if $(ask "\"$dotfile\" exists. Owerwrite?"); then
+			mv -pr $dotfile $dotfile.bkp
+			ln -s $file $dotfile && echo "\"$dotfile\" installed. (backup to \"$dotfile.bkp\")"
+		else
+			echo "Skip \"$dotfile\"."
+		fi
+	fi
+done
+
+# vim: ts=4 sw=4 nu ft=sh
