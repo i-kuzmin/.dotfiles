@@ -51,10 +51,12 @@ set cursorline
 set list listchars=tab:▸\ ,eol:¬
 
 "
-" interactive mode mappings (imap)
+" insert mode mappings (imap)
 "
 
 inoremap jj <esc>
+" this will help forgot escape
+inoremap <esc> <nop>
 
 "
 " normal mode mappings (nmap)
