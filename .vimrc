@@ -16,7 +16,10 @@ set exrc
 set hidden
 
 if has('gui_running')
-    set guioptions-=mTrL
+    "set guioptions-=T
+    "set guioptions-=m
+    "set guioptions-=r
+    set guioptions=ai
     set background=light
     set guifont=DejaVu\ Sans\ Mono\ 8 
 else
