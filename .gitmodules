@@ -10,3 +10,6 @@
 [submodule ".bin"]
 	path = .bin
 	url = git@github.com:i-kuzmin/.bin.git
+[submodule ".vim/bundle/vim-dispatch"]
+	path = .vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
