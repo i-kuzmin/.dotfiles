@@ -23,11 +23,7 @@ endif
 
 let g:tex_flavor = "latex"
 
-g:goog_user_conf = {
-    'langpair': 'en|ru', "language code iso 639-1
-    'cmd': 'node',
-    'v_key': 'T' "? define key in visual-mode (optional)
-}
+let g:goog_user_conf = { 'langpair': 'en|ru', 'cmd': 'node', 'v_key': 'T' }
 
 let g:solarized_hitrail=1
 let g:solarized_visibility="low"
