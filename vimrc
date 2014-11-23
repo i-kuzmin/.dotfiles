@@ -5,15 +5,17 @@ execute pathogen#infect()
 set exrc
 
 set textwidth=120
-set tabstop=4 shiftwidth=4 expandtab 
+set tabstop=4 shiftwidth=4 expandtab
 set nowrap
+
+set fileencodings=ucs-bom,utf-8,default,cp1251,cp866,latin1
 
 set hidden
 
 if has('gui_running')
     set guioptions=ai
     set background=light
-    set guifont=DejaVu\ Sans\ Mono\ 8 
+    set guifont=DejaVu\ Sans\ Mono\ 8
 else
     set background=dark
     "let g:solarized_termtrans = 1
@@ -55,6 +57,8 @@ set list listchars=tab:▸\ ,eol:¬
 "
 
 inoremap jj <esc>
+inoremap оо <esc>
+
 " this will help forgot escape
 inoremap <esc> <nop>
 
@@ -145,7 +149,13 @@ map <F2> :set spell!<CR>
 
 "command! Highlihgt exe printf('match IncSearch /\<%s\>/', expand('<cword>'))
 
+" Abbreviations
+
+
+"
 " File type addons
+"
+
 augroup filetype
     au! BufRead,BufNewFile *.ll set filetype=llvm
 augroup END
