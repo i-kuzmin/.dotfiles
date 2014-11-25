@@ -23,12 +23,20 @@ endif
 
 " Plugin configuration
 
+" latex-suit
 let g:tex_flavor = "latex"
 
+" google translate
 let g:goog_user_conf = { 'langpair': 'en|ru', 'cmd': 'node', 'v_key': 'T' }
 
+" solorized color scheme
 let g:solarized_hitrail=1
 let g:solarized_visibility="low"
+
+" ctags
+let g:ctags_statusline=1
+let g:ctags_title=0
+autocmd FileType cpp :CTAGS
 
 syntax enable
 colorscheme solarized
@@ -41,7 +49,7 @@ set imsearch=0
 "spell
 set spell spelllang=ru_yo,en_us
 
-set tags+=./%:p:t:r.tags
+set tags+=.tags
 filetype plugin on
 filetype indent on
 
@@ -151,6 +159,8 @@ map <F2> :set spell!<CR>
 
 " Abbreviations
 
+autocmd FileType cpp :iabbrev <buffer> iff if ( ) {<cr><++><cr>}<C-o>%<C-o>F)<left>
+autocmd FileType cpp :setlocal nu grepprg=grep\ -n\ -R\ --exclude=.tags\ '--exclude=*.sw[a-z]'
 
 "
 " File type addons
@@ -158,13 +168,7 @@ map <F2> :set spell!<CR>
 
 augroup filetype
     au! BufRead,BufNewFile *.ll set filetype=llvm
-augroup END
-
-augroup filetype
     au! BufRead,BufNewFile *.td set filetype=tablegen
-augroup END
-
-augroup filetype
-  au! BufRead,BufNewFile *Makefile* set filetype=make
+    au! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
 
