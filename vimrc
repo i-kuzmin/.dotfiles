@@ -2,15 +2,11 @@ set nocompatible
 execute pathogen#infect()
 
 " execute .vimrc in working directory
-set exrc
-
-set textwidth=120
-set tabstop=4 shiftwidth=4 expandtab
-set nowrap
+set exrc hlsearch nohidden
+set textwidth=120 tabstop=4 shiftwidth=4 expandtab nowrap
 
 set fileencodings=ucs-bom,utf-8,default,cp1251,cp866,latin1
 
-set hidden
 
 if has('gui_running')
     set guioptions=ai
@@ -37,6 +33,7 @@ let g:solarized_visibility="low"
 let g:ctags_statusline=1
 let g:ctags_title=0
 autocmd FileType cpp :CTAGS
+
 
 syntax enable
 colorscheme solarized
@@ -159,8 +156,21 @@ map <F2> :set spell!<CR>
 
 " Abbreviations
 
-autocmd FileType cpp :iabbrev <buffer> iff if ( ) {<cr><++><cr>}<C-o>%<C-o>F)<left>
-autocmd FileType cpp :setlocal nu grepprg=grep\ -n\ -R\ --exclude=.tags\ '--exclude=*.sw[a-z]'
+" add empty line above/belove current
+nnoremap <leader>O O<C-o>d0<esc>
+nnoremap <leader>o o<C-o>d0<esc>
+
+augroup filetype_tools
+    autocmd!
+    autocmd FileType cpp :iabbrev <buffer> iff if ( ) {<cr><++><cr>}<C-o>%<C-o>F)<left>
+    autocmd FileType cpp :compiler clang |setlocal makeprg=~/.bin/build\ $*\ %:p:r.cpp
+    autocmd FileType cpp,sh :setlocal nu grepprg=grep\ -n\ -R\ --exclude=.tags\ '--exclude=*.sw[a-z]'
+    autocmd FileType cpp :iabbrev '' ''<left>
+    autocmd FileType cpp :iabbrev "" ""<left>
+    autocmd FileType cpp :iabbrev /**/ /**/<left><left>
+    autocmd FileType cpp :setlocal foldmethod=syntax foldlevel=20
+    autocmd FileType cpp :call omni#cpp#complete#Init()
+augroup END
 
 "
 " File type addons
@@ -171,4 +181,5 @@ augroup filetype
     au! BufRead,BufNewFile *.td set filetype=tablegen
     au! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
+
 
