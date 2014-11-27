@@ -27,3 +27,5 @@
 	grep = auto
 	ui = auto
 	blame = true
+[push]
+	default = simple
