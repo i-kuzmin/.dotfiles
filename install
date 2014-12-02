@@ -1,4 +1,7 @@
 #!/bin/bash
+
+################################################################################
+
 ask()
 {
 	while true; do
@@ -19,30 +22,101 @@ ask()
 	done;
 }
 
-for file in *; do
-	if [ "$file" = "$0" ]; then continue; fi
-	dotfile=~/.$file
-	file=$(pwd)/$file
-	if [ -L $dotfile ]; then
-	   	if [ "$(readlink $dotfile)" = $file ]; then
-			echo "Dotfile \"$dotfile\" already installed."
+################################################################################
+
+log()
+{
+	echo "$1" $2 >/dev/stderr
+}
+
+################################################################################
+
+install()
+{
+    src=$(pwd)/$1
+	dst=$2
+	backup=$3
+
+	if [ -z "$backup" ]; then
+		backup=$dst.bkp
+	fi
+
+	if [ -L $dst ]; then
+	   	if [ "$(readlink $dst)" = $src ]; then
+			log "\"$dst\" already installed."
+            return 0
 		else
-			if $(ask "\"$dotfile\" already exists (points to \"$(readlink $dotfile)\"). Owerwrite?" ); then
-				rm $dotfile
-				ln -s $file $dotfile && echo "\"$dotfile\" successfully installed."
+			if $(ask "\"$dst\" already exists (points to \"$(readlink $dst)\"). Owerwrite?" ); then
+				rm $dst
 			else
-				echo "Skip \"$dotfile\"."
+				log "Skip \"$dst\"."
+				return 0
 			fi
 		fi
-	elif [ -e $dotfile ]; then
-		if $(ask "\"$dotfile\" exists. Owerwrite?"); then
-			mv $dotfile $dotfile.bkp &&
-			  ln -s $file $dotfile &&
-                echo "\"$dotfile\" installed. (backup \"$dotfile.bkp\")"
-		else
-			echo "Skip \"$dotfile\"."
+	elif [ -e $dst ]; then
+		log "Store original \"$dst\" to \"$backup\""
+		if [ -e "$backup" ]; then
+			if $(ask "\"$backup\" exists. Owerwrite?"); then
+				rm "$backup"
+			fi
+		fi
+		if [ ! -e "$backup" ]; then
+			( mv $dst $backup && log "$dst -> $backup" ) || return 1
 		fi
 	fi
-done
 
+	(ln -s $src $dst && log "\"$src\" -> \"$dst\" installed.") || return 1
+}
+
+################################################################################
+
+install_i3()
+{
+	if ! [ -d ~/.i3 ]; then
+		mkdir ~/.i3 || return 1
+	fi
+	install i3.config ~/.i3/config.shared ~/.i3/config.local
+}
+
+################################################################################
+
+#for file in *; do
+#	if [ "$file" = "$0" ]; then continue; fi
+#	dotfile=~/.$file
+#	file=$(pwd)/$file
+#	if [ -L $dotfile ]; then
+#	   	if [ "$(readlink $dotfile)" = $file ]; then
+#			echo "Dotfile \"$dotfile\" already installed."
+#		else
+#			if $(ask "\"$dotfile\" already exists (points to \"$(readlink $dotfile)\"). Owerwrite?" ); then
+#				rm $dotfile
+#				ln -s $file $dotfile && echo "\"$dotfile\" successfully installed."
+#			else
+#				echo "Skip \"$dotfile\"."
+#			fi
+#		fi
+#	elif [ -e $dotfile ]; then
+#		if $(ask "\"$dotfile\" exists. Owerwrite?"); then
+#			mv $dotfile $dotfile.bkp &&
+#			  ln -s $file $dotfile &&
+#                echo "\"$dotfile\" installed. (backup \"$dotfile.bkp\")"
+#		else
+#			echo "Skip \"$dotfile\"."
+#		fi
+#	fi
+#done
+
+main()
+{
+	install_i3
+    install xinitrc   ~/.xinitrc   ~/.xinitrc.local
+    install tmux.conf ~/.tmux.conf ~/.tmux.local
+    install gitconfig ~/.gitconfig
+    install vimrc     ~/.vimrc
+    install vim       ~/.vim
+    install bin       ~/.bin
+    install Xresource ~/.Xresource
+}
+
+main
 # vim: ts=4 sw=4 nu ft=sh

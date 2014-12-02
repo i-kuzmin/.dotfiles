@@ -22,5 +22,6 @@ pcmanfm --no-desktop -d &
 feh --bg-tile /home/iku/media/pictures/background.jpg
 
 
+cat ~/.i3/config.shared ~/.i3/config.local >~/.i3/config.united
 
-exec i3
+exec i3 -c ~/.i3/config.united
