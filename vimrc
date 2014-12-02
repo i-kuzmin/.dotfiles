@@ -156,15 +156,13 @@ map <F2> :set spell!<CR>
 " File type addons
 "
 
+"
+" txt2tags
+"
+
 augroup filetype
+    au! BufRead,BufNewFile *.t2t set filetype=txt2tags
     au! BufRead,BufNewFile *.ll set filetype=llvm
-augroup END
-
-augroup filetype
     au! BufRead,BufNewFile *.td set filetype=tablegen
+    au! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
-
-augroup filetype
-  au! BufRead,BufNewFile *Makefile* set filetype=make
-augroup END
-
