@@ -75,7 +75,8 @@ install_i3()
 	if ! [ -d ~/.i3 ]; then
 		mkdir ~/.i3 || return 1
 	fi
-	install i3.config ~/.i3/config.shared ~/.i3/config.local
+    install Config ~/.i3/Config
+	install i3.config ~/.i3/config ~/.i3/0-config
 }
 
 ################################################################################
