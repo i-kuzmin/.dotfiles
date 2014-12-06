@@ -21,6 +21,4 @@ compton -CGb -o 0.8 --opacity-rule "95:class_g = 'URxvt' && ! name ~= 'notranspa
 pcmanfm --no-desktop -d &
 feh --bg-tile /home/iku/media/pictures/background.jpg
 
-
-
 exec i3 -c `~/.i3/Config`

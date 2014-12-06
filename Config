@@ -8,6 +8,7 @@ for file in ~/.i3/*config; do
     echo "# $file"
     cat $file
 done >$i3_out
+echo $i3_out
 
 # vim: ft=sh
 
