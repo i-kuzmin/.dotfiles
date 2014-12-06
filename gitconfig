@@ -29,3 +29,5 @@
 	blame = true
 [push]
 	default = simple
+[diff]
+	submodule = log
