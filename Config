@@ -1,10 +1,15 @@
 #!/bin/bash
 
-#cat ~/.i3/*config > /tmp/i3.config
+if ! [ -z "$1" ]; then
+    tpe=$1
+else
+    tpe=config
+fi
 
-i3_out=~/.i3/config.united
+i3_out=/tmp/i3_$tpe
+i3_in=~/.i3/*$tpe
 
-for file in ~/.i3/*config; do
+for file in $i3_in; do
     echo "# $file"
     cat $file
 done >$i3_out
