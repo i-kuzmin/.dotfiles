@@ -119,6 +119,7 @@ main()
     install bin       ~/.bin
     install Xresource ~/.Xresource
     install Xmodmap   ~/.Xmodmap
+    install wiki      ~/.wiki
 }
 
 main

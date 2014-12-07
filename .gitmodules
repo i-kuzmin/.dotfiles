@@ -16,3 +16,6 @@
 [submodule "vim/bundle/vim-translator"]
 	path = vim/bundle/vim-translator
 	url = https://github.com/maksimr/vim-translator.git
+[submodule "wiki"]
+	path = wiki
+	url = ssh://git@github.com/i-kuzmin/wiki
