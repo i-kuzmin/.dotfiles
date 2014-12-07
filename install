@@ -118,6 +118,7 @@ main()
     install vim       ~/.vim
     install bin       ~/.bin
     install Xresource ~/.Xresource
+    install Xmodmap   ~/.Xmodmap
 }
 
 main

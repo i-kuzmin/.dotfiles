@@ -1,0 +1,15 @@
+!!
+!! Swap Caps_Lock and Control_L
+!!
+!!remove lock = Caps_Lock
+!!remove control = Control_L
+!!keysym Control_L = Caps_Lock
+!!keysym Caps_Lock = Control_L
+!!add lock = Caps_Lock
+!!add control = Control_L
+
+! Use F12 as a Delete key
+keycode 96 = Insert Insert
+
+! Apple Keyboard - use eject as delete key;
+keycode 169 = Delete Delete
