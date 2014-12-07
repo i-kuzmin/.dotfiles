@@ -2,11 +2,10 @@
 
 xrdb ~/.Xresources
 
-setxkbmap -layout us,ru -option grp:shifts_toggle -option ctrl:swapcaps
+#setxkbmap -layout us,ru -option grp:shifts_toggle -option ctrl:swapcaps
 #setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
 #setxkbmap -option ctrl:swapcaps     # Swap Left Control and Caps Lock
 
-xmodmap ~/.Xmodmap
 #
 xrandr --output LVDS-0 --auto --primary
 xrandr --output HDMI-0  --auto --right-of LVDS-0
