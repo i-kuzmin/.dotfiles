@@ -13,17 +13,34 @@ if [ -z "$COMMENT" ]; then
     COMMENT='#'
 fi
 
-#i3_out=/tmp/i3_$tpe
-#i3_in=~/.i3/*$tpe
-chmod 0644 $config_name
-echo "$COMMENT This file generated from $config_name-*" >$config_name
-echo "$COMMENT Please don't edit it manually as all changes will be overwritten" >>$config_name
-echo "$COMMENT" >>$config_name
+need_update()
+{
+    modifed="stat --printf %Y"
+    ts=`$modifed $config_name`
+    for file in $config_name-* ; do
+        file_ts=`$modifed $file`;
+        if [ $ts -lt $file_ts ]; then
+            return 0
+        fi
+    done
+    return 1
+}
 
-for file in $config_name-* ; do
-    echo $COMMENT "$file"
-    cat $file
-done >>$config_name
-chmod 0444 $config_name
+if need_update; then
+    lock="$config_name.lock"
+    lockfile-create "$lock"
+        chmod 0644 $config_name
+        echo "$COMMENT This file generated from $config_name-*" >$config_name
+        echo "$COMMENT Please don't edit it manually as all changes will be overwritten" >>$config_name
+        echo "$COMMENT" >>$config_name
+
+        for file in $config_name-* ; do
+            echo $COMMENT "$file"
+            cat $file
+        done >>$config_name
+        chmod 0444 $config_name
+    lockfile-remove "$lock"
+fi
+
 echo $config_name
 # vim: ft=sh
