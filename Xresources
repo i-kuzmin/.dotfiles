@@ -83,7 +83,7 @@ URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
 
-URxvt.font: xft:DejaVu Sans Mono-8
+URxvt.font: xft:DejaVu Sans Mono-10
 !URxvt.font: xft:Terminus-13
 
 URxvt.perl-lib:             /home/iku/.urxvt/ext

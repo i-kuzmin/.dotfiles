@@ -75,9 +75,8 @@ install_i3()
 	if ! [ -d ~/.i3 ]; then
 		mkdir ~/.i3 || return 1
 	fi
-    install Config ~/.i3/Config
-	install i3.config ~/.i3/config ~/.i3/0-config
-    install i3status.conf ~/.i3/0-i3status.conf ~/.i3/1-i3status.conf
+	install i3.config ~/.i3/config-s ~/.i3/config-a
+    install i3status.conf ~/.i3/i3status.conf-s ~/.i3/i3status.conf-z
 }
 
 ################################################################################
@@ -117,8 +116,8 @@ main()
     install vimrc     ~/.vimrc
     install vim       ~/.vim
     install bin       ~/.bin
-    install Xresource ~/.Xresource
-    install Xmodmap   ~/.Xmodmap
+    install Xresource ~/.Xresource-s ~/.Xresource-z
+    install Xmodmap   ~/.Xmodmap-s ~/.Xmodmap-z
     install wiki      ~/.wiki
 }
 

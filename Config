@@ -1,20 +1,29 @@
 #!/bin/bash
 
 if ! [ -z "$1" ]; then
-    tpe=$1
+    config_name=$1
 else
-    tpe=config
+    config_name=~/.i3/config
+fi
+if ! [ -z "$2" ]; then
+    COMMENT="$2"
 fi
 
-i3_out=/tmp/i3_$tpe
-i3_in=~/.i3/*$tpe
+if [ -z "$COMMENT" ]; then
+    COMMENT='#'
+fi
 
-for file in $i3_in; do
-    echo "# $file"
+#i3_out=/tmp/i3_$tpe
+#i3_in=~/.i3/*$tpe
+chmod 0644 $config_name
+echo "$COMMENT This file generated from $config_name-*" >$config_name
+echo "$COMMENT Please don't edit it manually as all changes will be overwritten" >>$config_name
+echo "$COMMENT" >>$config_name
+
+for file in $config_name-* ; do
+    echo $COMMENT "$file"
     cat $file
-done >$i3_out
-echo $i3_out
-
+done >>$config_name
+chmod 0444 $config_name
+echo $config_name
 # vim: ft=sh
-
-
