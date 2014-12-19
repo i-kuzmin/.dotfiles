@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xrdb `~/.dotfiles/Config ~/.Xresources !`
+xrdb `~/.dotfiles/Config ~/.Xresource !`
 
 #setxkbmap -layout us,ru -option grp:shifts_toggle -option ctrl:swapcaps
 #setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key

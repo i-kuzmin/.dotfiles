@@ -71,6 +71,18 @@
 *color14:                 S_base1
 *color15:                 S_base3
 
+! -- XTerm terminal properties -- !
+
+XTerm*.disallowedWindowOps:	20,21,SetXprop
+XTerm*faceName:             xft:DejaVu Sans Mono:style=Book:size=8
+XTerm*font:     -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+XTerm*wideFont: -misc-fixed-medium-r-normal-ja-18-120-100-100-c-180-iso10646-1
+
+xTerm*termName: xterm-256color
+XTerm*locale: true
+XTerm*metaSendsEscape: true
+Xterm*saveLines: 10000
+
 ! -- urxvt terminal properties -- !
 
 URxvt*background:              S_base03_t
@@ -111,14 +123,3 @@ URxvt*iso14755: False
 URxvt.keysym.C-S-Up:   perl:font-size:increase 
 URxvt.keysym.C-S-Down:   perl:font-size:decrease 
 
-! -- XTerm terminal properties -- !
-
-XTerm*.disallowedWindowOps:	20,21,SetXprop
-XTerm*faceName:             xft:DejaVu Sans Mono:style=Book:size=8
-Xterm*font:     -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
-Xterm*wideFont: -misc-fixed-medium-r-normal-ja-18-120-100-100-c-180-iso10646-1
-
-xterm*termName: xterm-256color
-XTerm*locale: true
-XTerm*metaSendsEscape: true
-Xterm*saveLines: 10000

@@ -16,9 +16,15 @@ fi
 need_update()
 {
     modifed="stat --printf %Y"
+    if ! [ -e $config_name ]; then
+        return 0
+    fi
     ts=`$modifed $config_name`
     for file in $config_name-* ; do
-        file_ts=`$modifed $file`;
+        if [ -L $file ]; then
+            file=$(readlink -f $file)
+        fi
+        file_ts=`$modifed $file` || return 1
         if [ $ts -lt $file_ts ]; then
             return 0
         fi
@@ -27,9 +33,10 @@ need_update()
 }
 
 if need_update; then
+    echo Update >/dev/stderr
     lock="$config_name.lock"
     lockfile-create "$lock"
-        chmod 0644 $config_name
+        chmod 0644 $config_name &>/dev/null
         echo "$COMMENT This file generated from $config_name-*" >$config_name
         echo "$COMMENT Please don't edit it manually as all changes will be overwritten" >>$config_name
         echo "$COMMENT" >>$config_name
@@ -38,7 +45,7 @@ if need_update; then
             echo $COMMENT "$file"
             cat $file
         done >>$config_name
-        chmod 0444 $config_name
+        chmod 0444 $config_name &>/dev/null
     lockfile-remove "$lock"
 fi
 

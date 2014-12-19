@@ -1,0 +1,7 @@
+set $mon1 LVDS-0
+set $mon2 HDMI-0
+
+set $bgImage /home/iku/media/pictures/background.jpg
+
+set $barFont pango:DejaVu Sans Mono, 8
+set $font pango:DejaVu Sans  10
