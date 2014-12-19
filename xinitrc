@@ -21,6 +21,8 @@ compton -CGb -o 0.8 --opacity-rule "95:class_g = 'URxvt' && ! name ~= 'notranspa
 pcmanfm --no-desktop -d &
 feh --bg-tile /home/iku/media/pictures/background.jpg
 
-xrandr --output DVI-0 --primary
+if [ -e "~/.xrandr" ]; then
+    bash ~/.xrandr
+fi
 
 exec i3 -c `~/.dotfiles/Config ~/.i3/config`
