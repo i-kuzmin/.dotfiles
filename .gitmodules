@@ -19,3 +19,6 @@
 [submodule "wiki"]
 	path = wiki
 	url = ssh://git@github.com/i-kuzmin/wiki
+[submodule "fonts"]
+	path = fonts
+	url = ssh://git@github.com:i-kuzmin/.fonts

@@ -119,6 +119,7 @@ main()
     install Xresource ~/.Xresource-s ~/.Xresource-z
     install Xmodmap   ~/.Xmodmap-s ~/.Xmodmap-z
     install wiki      ~/.wiki
+    install fonts     ~/.fonts
 }
 
 main
