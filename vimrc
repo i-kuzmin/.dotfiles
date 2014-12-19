@@ -62,16 +62,20 @@ set list listchars=tab:▸\ ,eol:¬
 "
 
 inoremap jj <esc>
-inoremap оо <esc>
+inoremap jk <esc>
+
 
 " this will help forgot escape
 inoremap <esc> <nop>
 
 "
-" normal mode mappings (nmap)
+" normal mode mappings
 "
 nnoremap <silent> p :cp<CR>
 nnoremap <silent> n :cn<CR>
+
+" highlight word under cursor
+nnoremap gh :exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))<cr>
 
 " Windows managment
 
@@ -162,14 +166,14 @@ nnoremap <leader>o o<C-o>d0<esc>
 
 augroup filetype_tools
     autocmd!
-    autocmd FileType cpp :iabbrev <buffer> iff if ( ) {<cr><++><cr>}<C-o>%<C-o>F)<left>
-    autocmd FileType cpp :compiler clang |setlocal makeprg=~/.bin/build\ $*\ %:p:r.cpp
-    autocmd FileType cpp,sh :setlocal nu grepprg=grep\ -n\ -R\ --exclude=.tags\ '--exclude=*.sw[a-z]'
-    autocmd FileType cpp :iabbrev '' ''<left>
-    autocmd FileType cpp :iabbrev "" ""<left>
-    autocmd FileType cpp :iabbrev /**/ /**/<left><left>
-    autocmd FileType cpp :setlocal foldmethod=syntax foldlevel=20
-    autocmd FileType cpp :call omni#cpp#complete#Init()
+    "autocmd FileType cpp :iabbrev <buffer> iff if ( ) {<cr><++><cr>}<C-o>%<C-o>F)<left>
+    "autocmd FileType cpp :compiler clang |setlocal makeprg=~/.bin/build\ $*\ %:p:r.cpp
+    autocmd FileType sh :setlocal nu grepprg=grep\ -n\ -R\ --exclude=.tags\ '--exclude=*.sw[a-z]'
+    "autocmd FileType cpp :iabbrev '' ''<left>
+    "autocmd FileType cpp :iabbrev "" ""<left>
+    "autocmd FileType cpp :iabbrev /**/ /**/<left><left>
+    "autocmd FileType cpp :setlocal foldmethod=syntax foldlevel=20
+    "autocmd FileType cpp :call omni#cpp#complete#Init()
 augroup END
 
 "

@@ -1,8 +1,6 @@
 [user]
-	name = Ilya Kuzmin
+	name = Ilya Kyzmin
 	email = igk@tbricks.com
-[merge]
-	tool = vimdiff
 [alias]
 	co = checkout
 	br = !git cmd branch
@@ -29,5 +27,3 @@
 	blame = true
 [push]
 	default = simple
-[diff]
-	submodule = log
