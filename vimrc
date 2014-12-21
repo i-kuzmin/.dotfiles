@@ -76,19 +76,19 @@ nnoremap <silent> n :cn<CR>
 
 " add empty line above/belove current
 nnoremap <leader>O :set paste<CR>O<esc>:set nopaste<CR>
-nnoremap <leader>O :set paste<CR>o<esc>:set nopaste<CR>
+nnoremap <leader>o :set paste<CR>o<esc>:set nopaste<CR>
 
 "
 " visual mode mappings
 "
 
 " surround selection with ",',),{
-vnoremap " v`>a"<esc>`<i"<esc>`>ll
-vnoremap ' v`>a'<esc>`<i'<esc>`>ll
-vnoremap ( v`>a)<esc>`<i(<esc>`>ll
-vnoremap ) v`>a)<esc>`<i(<esc>`>ll
-vnoremap { v`>a}<esc>`<i{<esc>`>ll
-vnoremap } v`>a}<esc>`<i{<esc>`>ll
+vnoremap <leader>" v`>a"<esc>`<i"<esc>`>ll
+vnoremap <leader>' v`>a'<esc>`<i'<esc>`>ll
+vnoremap <leader>( v`>a)<esc>`<i(<esc>`>ll
+vnoremap <leader>) v`>a)<esc>`<i(<esc>`>ll
+vnoremap <leader>{ v`>a}<esc>`<i{<esc>`>ll
+vnoremap <leader>} v`>a}<esc>`<i{<esc>`>ll
 
 " highlight word under cursor
 nnoremap gh :exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))<cr>
