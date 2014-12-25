@@ -13,3 +13,8 @@ keycode 96 = Insert Insert
 
 ! Apple Keyboard - use eject as delete key;
 keycode 169 = Delete Delete
+
+
+! Bind right control to capslock
+remove control = Control_R
+add lock = Control_R
