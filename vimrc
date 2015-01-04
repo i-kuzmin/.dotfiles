@@ -170,6 +170,47 @@ nmap <leader>rrc :source $MYVIMRC<CR>
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
+
+" ExploreWiki::init
+let g:netrw_banner=0
+"let g:old_netre_hide=0
+"let g:old_netrw_list_hide=''
+function! ExploreWiki()
+"    if exists('g:netrw_banner')
+"        let l:netrw_banner=g:netrw_banner
+"    endif
+    if exists('g:netrw_hide')
+        let l:netrw_hide=g:netrw_hide
+    endif
+    if exists("g:netrw_list_hide")
+        let l:netrw_list_hide=g:netrw_list_hide
+    endif
+
+    let g:netrw_banner=0
+    let g:netrw_hide=1
+    let g:netrw_list_hide='^\.[^.].*,Makefile'
+
+    :Texplore ~/.wiki
+    if exists("l:netrw_hide")
+        let g:netrw_hide=l:netrw_hide
+    else
+        unlet g:netrw_hide
+    endif
+
+    if exists("l:netrw_list_hide")
+        let g:netrw_list_hide=l:netrw_list_hide
+    else
+        unlet g:netrw_list_hide
+    endif
+
+"    if exists("l:netrw_banner")
+"        let g:netrw_banner=l:netrw_banner
+"    else
+"        unlet g:netrw_banner
+"    endif
+endf
+nnoremap <leader>ww :call ExploreWiki()<CR>
+
 call togglebg#map("<F5>")
 map <F2> :set spell!<CR>
 
