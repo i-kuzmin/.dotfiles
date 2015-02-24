@@ -7,6 +7,8 @@ set textwidth=120 tabstop=4 shiftwidth=4 expandtab nowrap
 
 set fileencodings=ucs-bom,utf-8,default,cp1251,cp866,latin1
 
+" use blowfish2 for encrypt files
+set cryptmethod=blowfish2
 
 if has('gui_running')
     set guioptions=ai
@@ -71,8 +73,14 @@ inoremap <esc> <nop>
 "
 " normal mode mappings
 "
-nnoremap <silent> p :cp<CR>
-nnoremap <silent> n :cn<CR>
+nnoremap <silent> p :cprevious<CR>
+nnoremap <silent> n :cnext<CR>
+nnoremap <silent> w :botright cwindow<CR>
+
+
+nnoremap <silent> <leader>p :lprevious<CR>
+nnoremap <silent> <leader>n :lnext<CR>
+nnoremap <silent> <leader>w :botright lwindow<CR>
 
 " add empty line above/belove current
 nnoremap <leader>O :set paste<CR>O<esc>:set nopaste<CR>
@@ -190,7 +198,8 @@ function! ExploreWiki()
     let g:netrw_hide=1
     let g:netrw_list_hide='^\.[^.].*,Makefile'
 
-    :Texplore ~/.wiki
+    tabnew |lcd ~/.wiki |e .
+
     if exists("l:netrw_hide")
         let g:netrw_hide=l:netrw_hide
     else
@@ -209,6 +218,7 @@ function! ExploreWiki()
 "        unlet g:netrw_banner
 "    endif
 endf
+
 nnoremap <leader>ww :call ExploreWiki()<CR>
 
 call togglebg#map("<F5>")
