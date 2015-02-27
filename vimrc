@@ -1,6 +1,5 @@
 set nocompatible
 execute pathogen#infect()
-
 " execute .vimrc in working directory
 set exrc hlsearch nohidden
 set textwidth=120 tabstop=4 shiftwidth=4 expandtab nowrap
@@ -29,7 +28,7 @@ let g:goog_user_conf = { 'langpair': 'en|ru', 'cmd': 'node', 'v_key': 'T' }
 
 " solorized color scheme
 let g:solarized_hitrail=1
-let g:solarized_visibility="low"
+"let g:solarized_visibility="low"
 
 " ctags
 let g:ctags_statusline=1
@@ -57,7 +56,7 @@ set incsearch
 set clipboard=unnamed
 set cursorline
 
-set list listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
 
 "
 " insert mode mappings (imap)
@@ -68,7 +67,7 @@ inoremap jk <esc>
 
 
 " this will help forgot escape
-inoremap <esc> <nop>
+" inoremap <esc> <nop>
 
 "
 " normal mode mappings
@@ -85,6 +84,16 @@ nnoremap <silent> <leader>w :botright lwindow<CR>
 " add empty line above/belove current
 nnoremap <leader>O :set paste<CR>O<esc>:set nopaste<CR>
 nnoremap <leader>o :set paste<CR>o<esc>:set nopaste<CR>
+
+"
+" Plugins
+"
+
+"   tagbar
+nnoremap <silent> <F8> :TagbarToggle<CR>
+let g:tagbar_autofocus=1
+
+nnoremap <silent> <F7> :set list!<CR>
 
 "
 " visual mode mappings
@@ -136,7 +145,6 @@ nnoremap <silent> L :wincmd L<CR>
 "
 " Tabs management
 "
-
 nmap <silent> <A-S-]> gt
 nmap <silent> <A-S-[> gT
 nmap <silent> <A-1> 1gt
