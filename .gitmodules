@@ -10,3 +10,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/i-kuzmin/.vim
+[submodule "mutt"]
+	path = mutt
+	url = https://github.com/i-kuzmin/.mutt
