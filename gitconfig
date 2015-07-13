@@ -1,6 +1,6 @@
 [user]
 	name = Ilya Kyzmin
-	email = igk@tbricks.com
+	email = Ilya.Kuzmin@orc-group.com
 [alias]
 	co = checkout
 	br = !git cmd branch
