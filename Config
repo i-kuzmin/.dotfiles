@@ -38,7 +38,7 @@ if need_update; then
     lockfile-create "$lock"
         chmod 0644 $config_name &>/dev/null
         echo "$COMMENT This file generated from $config_name-*" >$config_name
-        echo "$COMMENT Please don't edit it manually as all changes will be overwritten" >>$config_name
+        echo "$COMMENT Please do not edit it manually as all changes will be overwritten" >>$config_name
         echo "$COMMENT" >>$config_name
 
         for file in $config_name-* ; do
