@@ -1,0 +1,19 @@
+#force_xinerama yes
+for_window [class="^Google-chrome$"] border 1pixel
+for_window [class="^Gvim$"] border 1pixel
+for_window [class="^[Cc]hromium$"] border 1pixel
+for_window [class="^Vmplayer$"] border 1pixel
+for_window [class="^Thunderbird$"] border 1pixel
+for_window [class="^Gnome-terminal$"] border 1pixel
+for_window [class="^URxvt$"] border 1pixel
+for_window [class="^XTerm$"] border 1pixel, focus child, exec transset-df -a 0.95
+for_window [class="^xfreerdp$"] border 1pixel, floating disabled
+for_window [class="^Wpa_gui$"] floating enabled
+for_window [class="^Pavucontrol$"] floating enabled
+for_window [class="^Blueman-manager$"] floating enabled
+for_window [class="^Vpnui$"] floating enabled
+for_window [class="^VirtualBox$"] border 1pixel
+
+#for_window [class="^Conky$"] border none; floating enable
+
+# vim: ft=config

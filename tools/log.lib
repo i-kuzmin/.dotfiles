@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Stream for debug output
+g_log_debug_out=/dev/stdout
+
+# Stream for error output
+g_log_error_out=/dev/stderr
+
+# Logging levels:
+LOG_SILENT=0
+LOG_CRITICAL=1
+LOG_ERROR=2
+LOG_DEBUG=3
+
+# Logging level
+g_log_debug_level=$LOG_ERROR 
+
+# Print out backtrace from level
+g_log_backtrace_level=$LOG_CRITICAL
+
+# Avoid source file name and line number print out in log message.
+g_log_avoid_lineno=false
+
+# ------------------------------------------------------------------------------
+
+function log_debug() {
+    local format=$1; shift
+    log_print $LOG_DEBUG "$format" $@ >$g_log_debug_out 
+}
+
+# ------------------------------------------------------------------------------
+
+function log_error() {
+    local format=$1; shift
+    log_print $LOG_ERROR "$format" $@ >$g_log_error_out 
+}
+
+# ------------------------------------------------------------------------------
+
+function log_die() {
+    local format=$1; shift
+    log_print $LOG_CRITICAL "$format" $@ >$g_log_error_out 
+    exit -1;
+}
+
+# ------------------------------------------------------------------------------
+# @arg - set logging level
+function log_level() {
+    local level=$1; shift
+    if [ $level -le $LOG_DEBUG ]; then
+        g_log_debug_level=$level;
+    else
+        log_error "Unexpected logging level \"$level\""
+    fi
+}
+
+# ------------------------------------------------------------------------------
+# Private functions
+
+function log_print_back_trace() {
+    local skip=$1; shift;
+    if [ -z "$skip" ]; then
+        skip=1
+    fi
+    for (( i=${#BASH_SOURCE[@]}-1; i>$skip; i-- )); do
+        echo "> ${BASH_SOURCE[$i]}:${BASH_LINENO[$i-1]}";
+    done
+}
+
+# ------------------------------------------------------------------------------
+
+function log_print() {
+    local level=$1; shift;
+    local format=$1; shift;
+    local prefix=;
+
+    if [ "$g_log_debug_level" -ge "$level" ]; then
+        if [ "$g_log_backtrace_level" -ge "$level" ]; then
+            log_print_back_trace 2;
+
+        elif ! $g_log_avoid_lineno; then
+            prefix="${BASH_SOURCE[2]}:${BASH_LINENO[1]}:"
+        fi
+
+        printf "$prefix$format\n" $@
+    fi
+}
+
+# ------------------------------------------------------------------------------
+
+# vim: ft=sh nu tw=80

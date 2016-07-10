@@ -1,0 +1,3 @@
+order += "ethernet enp9s0"
+
+# vim: ft=conf

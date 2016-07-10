@@ -1,0 +1,170 @@
+#!/bin/bash
+
+source ~/.dotfiles/tools/log.lib
+
+# virtual function config_run() - need to be overridden in clients code
+# @arg config
+
+# ------------------------------------------------------------------------------
+
+function config_help_commands() {
+    echo "show|up|run <args>|edit <line_no>|-h(--help)|--debug(-d)"
+}
+
+# ------------------------------------------------------------------------------
+
+function config_help_descriptions() {
+    echo "  show"
+    echo "      show current config file name"
+    echo ""
+    echo "  up"
+    echo "      update config file"
+    echo ""
+    echo "  run(<empty>)"
+    echo "      invoke an application"
+    echo ""
+    echo "  edit <line_no>"
+    echo "      map output file <line_no> to input config file line number"
+    echo ""
+    echo "  -d(--debug)"
+    echo "      turn on debug logging"
+    echo ""
+    echo "  -h(--help)"
+    echo "      show help message"
+}
+
+# ------------------------------------------------------------------------------
+# @return temporary files directory name
+function tmpdir() {
+    if [ -z "$TEMPDIR" ]; then
+        echo "/tmp";
+    else
+        echo "$TEMPDIR";
+    fi
+}
+
+# ------------------------------------------------------------------------------
+# @arg config domain (e.g. "i3.config")
+# @return path to config-file for config domain
+function config_file_get() {
+    local name=$1; shift;
+    local tmp=$(tmpdir);
+    if [ -f $tmp/$name.??? ]; then
+        config=$tmp/$name.???;
+    else
+        config=$(mktemp -p $tmp -t $name.XXX);
+    fi
+    echo $config;
+}
+
+# ------------------------------------------------------------------------------
+
+function config_expand_pattern()
+{
+    local pattern=$1; shift;
+    echo $(eval "ls $pattern|sort")
+}
+
+# ------------------------------------------------------------------------------
+# @arg - config file name to write
+# @arg - input config files pattern (e.g. "~/.i3/config*")
+function config_update() {
+    local args="$@"; log_debug "config::update $args";
+    local config_out=$1; shift;
+    local config_in=$1; shift;
+
+    chmod +w $config_out
+    local input_list=$(config_expand_pattern "$config_in")
+    cat $input_list> $config_out || log_die "Can't update \"$config_out\""
+    chmod -w $config_out
+
+    log_debug "\"$config_out\" was successfully updated"
+}
+
+# ------------------------------------------------------------------------------
+# @arg - output file line number 
+# @arg - input config files pattern (e.g. "~/.i3/config*")
+function config_edit() {
+    local args="$@"; log_debug "config::edit $args";
+
+    local config_in=$1; shift;
+    local line=$1; shift;
+    if [ -z $line ]; then log_die "config::edit: Line number is not defined."; fi
+
+    for file in $(config_expand_pattern $config_in); do
+        local len=$(wc -l  "$file" |cut -f1 -d' ')
+        if [[ "$line" -ge "$len" ]]; then
+            line=$(($line - $len))
+            log_debug "skip $file:$len"
+        else
+            if [[ "$EDITOR" =~ ^(vim|vi|gvim|nvim)$ ]]; then
+                $EDITOR $file +$line
+            else
+                echo "$file:$line"
+            fi
+            return
+        fi
+    done
+    echo "Defined line is out of input config files scope"
+}
+
+# ------------------------------------------------------------------------------
+# @arg - config domain (e.g. "i3.config")
+# @arg - config files pattern (e.g. "~/.i3/config*"
+function config_main() {
+    local args="$@"; log_debug "config::main $args"
+
+    local config_domain=$1; shift;
+    local config_pattern=$1; shift;
+    if [ -z "$config_pattern" ] || [ -z "$config_domain" ]; then
+        log_die "config file pattern and condig domain need to be defined";
+    fi
+
+    while true; do
+        local arg=$1; shift
+        case "$arg" in
+            -d|--debug)
+                log_level $LOG_DEBUG
+                continue;
+            ;;
+
+            up)
+                config_update $(config_file_get "$config_domain") "$config_pattern"
+            ;;
+
+            show)
+                local config=$(config_file_get "$config_domain")
+                if [ -s $config ]; then
+                    echo "$config";
+                else
+                    echo "$config (empty)";
+                fi
+            ;;
+
+            edit)
+                config_edit "$config_pattern" $1
+            ;;
+
+            ''|run)
+                local config=$(config_file_get "$config_domain");
+                config_update $config "$config_pattern";
+                config_run $config $@;
+                chmod +w $config; rm $config;
+            ;;
+
+            -h|--help)
+                echo "USAGE $0 [$(config_help_commands)]"
+                config_help_descriptions
+                exit 0
+            ;;
+
+            *)
+                echo "Unknown command \"$arg\""
+            ;;
+        esac
+        break;
+    done
+}
+
+# ------------------------------------------------------------------------------
+# vim: ft=sh nu tw=80

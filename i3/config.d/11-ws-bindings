@@ -1,0 +1,57 @@
+## Dedicated Workspaces
+
+# mod+comma rename workspace
+bind    $mod+59 exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+### Desktop Workspace ###
+set $desk desk
+set $desktop_class class="^Pcmanfm$" title="^pcmanfm$"
+
+bindsym $mod+d exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $desk pcmanfm
+bindsym $mod+Shift+d move container to workspace $desk, floating enable
+bindsym $mod+$alt+d exec --no-startup-id pcmanfm
+
+for_window [$desktop_class] border none, floating disabled, focus parent, layout tabbed
+for_window [class="^Pcmanfm$"] border 1pixel
+
+assign [$desktop_class] $desk
+
+### WWW Workspace ###
+set $www www
+bindsym $mod+w exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $www chromium
+bindsym $mod+Shift+w move container to workspace $www
+bindsym $mod+$alt+w exec --no-startup-id chromium
+
+### Mail Workspace ###
+set $mail mail
+bindsym $mod+m exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $mail thunderbird
+bindsym $mod+Shift+m move container to workspace $mail
+bindsym $mod+$alt+m exec --no-startup-id thunderbird
+
+### VirtualBox Workspace ###
+#set $vm vm
+#bindsym $mod+Shift+v move container to workspace $vm
+#bindsym $mod+$alt+v exec --no-startup-id virtualbox
+
+### Skype Workspace ###
+set $im im
+bindsym $mod+i exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $im skype
+bindsym $mod+Shift+i move container to workspace $im
+bindsym $mod+$alt+i exec --no-startup-id skype
+
+### Front-end Workspace ###
+set $fe z:front-end
+bindsym $mod+z exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $fe front-end start
+bindsym $mod+Shift+z move container to workspace $im
+bindsym $mod+$alt+z exec --no-startup-id frint-end start
+
+### Console Workspace ###
+#set $console console
+#bindsym $mod+c workspace $console
+#bindsym $mod+Shift+c move container to workspace $console
+
+# vim: ft=config

@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# ------------------------------------------------------------------------------
+
+source ~/.dotfiles/tools/config.lib
+
+# ------------------------------------------------------------------------------
+
+function run_i3() {
+    function config_run() {
+        local config=$1; shift;
+        local cmd="i3 -c $config $@"
+        log_debug "execute: $cmd"
+        $cmd
+    }
+
+    config_main "i3.config" "~/.dotfiles/i3/config.d/*" $@
+}
+
+# ------------------------------------------------------------------------------
+
+function run_i3status() {
+    function config_run() {
+        local config=$1; shift;
+        local cmd="i3status -c $config $@"
+        log_debug "execute: $cmd"
+        $cmd
+    }
+
+    local name=
+    local args=()
+    while [[ $# -ge 1 ]]; do
+        case "$1" in
+            -n|--name)
+                name=$2; shift
+            ;;
+            -h|--help)
+                echo "USAGE"
+                echo "  $0 [-n(--name) name|$(config_help_commands)]"
+                echo ""
+                echo "OPTIONS"
+                echo "  -n(--name) name"
+                echo "      define particular panel config"
+                echo ""
+                config_help_descriptions
+                exit 0
+            ;;
+            *)
+                args+=($1)
+            ;;
+        esac
+        shift;
+    done
+
+    local pattern=
+    local domain=
+    if [ ! -z "$name" ]; then
+        pattern="~/.dotfiles/i3/status.conf.d/*-{common,$name}-*"
+        domain="i3status.$name.conf"
+    else
+        pattern="~/.dotfiles/i3/status.conf.d/*-common-*"
+        domain="i3status.conf"
+    fi
+    config_main $domain $pattern ${args[*]}
+
+}
+
+# ------------------------------------------------------------------------------
+
+function main() {
+    case $(basename $0) in
+        "run.i3") run_i3 $@;;
+        "run.i3status") run_i3status $@;;
+        *) echo "unknown tool";;
+    esac
+}
+
+# ------------------------------------------------------------------------------
+
+main $@
+
+# vim: ft=sh nu tw=80
