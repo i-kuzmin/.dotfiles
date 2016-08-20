@@ -1,19 +1,24 @@
 #!/bin/bash
 
-userresources=`$HOME/.dotfiles/Config $HOME/.Xresource !`
 usermodmap=$HOME/.Xmodmap
+userxresources=$HOME/.Xresources
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 fi
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
+
+if [ -d $HOME/.dotfiles/Xresources.d ]; then
+    xrdb -merge <(cat $HOME/.dotfiles/Xresources.d/*)
 fi
 
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
+if [ -f $userxresources ]; then
+    xrdb -merge $userxresources
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
 fi
 
 if [ -f "$usermodmap" ]; then
@@ -29,7 +34,7 @@ fi
 
 xset b off
 
-log_file=~/.local/var/log/i3.log
-mkdir -p $(log_file)
+log_file=$HOME/.local/var/log/i3.log
+mkdir -p $(dirname $log_file)
 echo "Start $(date)" > $log_file
 exec ~/.dotfiles/i3/bin/run.i3> $log_file
