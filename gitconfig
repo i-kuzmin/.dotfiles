@@ -13,7 +13,7 @@
 	up = !git submodule update
 	sw = !sw-git
 	lb = for-each-ref --format='%(refname:short)' --sort=-authordate --count=8 refs/heads/
-	ignore = update-index --assume-unchanged 
+	ignore = update-index --assume-unchanged
 	noignore = update-index --no-assume-unchanged
 [core]
 	excludesfile = /home/igk/.gitignore
@@ -27,3 +27,5 @@
 	blame = true
 [push]
 	default = simple
+[include]
+	path = ~/.gitconfig.local
