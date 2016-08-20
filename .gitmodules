@@ -1,9 +1,9 @@
 [submodule "bin"]
 	path = bin
-	url = git@github.com:i-kuzmin/.bin.git
+	url = https://github.com/i-kuzmin/.bin.git
 [submodule "wiki"]
 	path = wiki
-	url = ssh://git@github.com/i-kuzmin/wiki
+	url = https://github.com/i-kuzmin/wiki
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/i-kuzmin/.fonts.git 
