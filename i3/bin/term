@@ -1,0 +1,61 @@
+#!/bin/bash
+
+function term_tmux
+{
+    if [ "$1" == "--detache" ]; then
+        detache="true"
+        shift;
+    fi
+
+    session=`tmux list-sessions -F "#{?session_attached,,#{session_id}}" |grep -o '$[0-9]\+' |head -1`
+
+    if [ ! -z "$detache" ]; then
+        term_exec -e -q has-session && exec tmux attach-session -d
+
+    elif [ ! -z "$session" ]; then
+        term_exec -e tmux attach-session -t "$session"
+
+    else
+        term_exec -e tmux new-session
+    fi
+}
+
+TERM_DARK="$HOME/.local/var/term.dark"
+
+function term_dark
+{
+    touch $TERM_DARK 
+    term_exec $@
+}
+
+function term_light
+{
+    rm "$TERM_DARK"
+    term_exec $@
+}
+
+function term_exec
+{
+    if [ -e "$TERM_DARK" ]; then
+        NAME="-name Dark"
+    else
+        NAME=
+    fi
+
+    if which urxvtc; then
+        exec urxvtc $NAME $@
+
+    elif which urxvt; then
+        exec urxvt $NAME $@
+
+    elif which xterm; then
+        exec xterm $NAME $@
+    fi
+}
+
+case $(basename $0) in
+    term.tmux)  term_tmux $@;;
+    term.light) term_light $@;;
+    term.dark)  term_dark $@;;
+    term|*)     term_exec $@;;
+esac

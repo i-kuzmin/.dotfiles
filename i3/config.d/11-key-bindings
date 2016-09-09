@@ -32,9 +32,9 @@ bindsym --release Mod1+x exec --no-startup-id xdotool key --clearmodifiers ctrl+
 
 # Terminal 
 #bindsym $mod+Return exec gnome-terminal
-#bindsym $mod+Return exec --no-startup-id urxvtc -e bash -c "tmux -q has-session && exec tmux attach-session -d"
-bindsym $mod+Return exec urxvtc -e ~/.bin/urxvtc_tmux
-bindsym $mod+Shift+Return exec urxvtc -e ~/.bin/urxvtc_tmux --detache
+#bindsym $mod+Return exec ~/.bin/term -e ~/.bin/urxvtc_tmux
+bindsym $mod+Shift+Return exec ~/.dotfiles/i3/bin/term.tmux --detache
+bindsym $mod+Return exec ~/.dotfiles/i3/bin/term.tmux
 # || exec tmux new-session -n$USER -s$USER@$HOSTNAME"
 
 # start dmenu (a program launcher)
