@@ -1,5 +1,5 @@
 XTerm*.disallowedWindowOps:	20,21,SetXprop
-XTerm*faceName: xft:DejaVu Sans Mono:style=Book:size=8
+XTerm*faceName: xft:DejaVu Sans Mono:style=Book:size=16
 XTerm*font:     -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
 XTerm*wideFont: -misc-fixed-medium-r-normal-ja-18-120-100-100-c-180-iso10646-1
 

@@ -17,15 +17,15 @@
 
 ! Dark
 
-!#define S_base03        #002b36
-!#define S_base03_t  [95]#002b36
-!#define S_base02        #073642
-!#define S_base01        #586e75
-!#define S_base00        #657b83
-!#define S_base0         #839496
-!#define S_base1         #93a1a1
-!#define S_base2         #eee8d5
-!#define S_base3         #fdf6e3
+#define SD_base03        #002b36
+#define SD_base03_t      #002b36
+#define SD_base02        #073642
+#define SD_base01        #586e75
+#define SD_base00        #657b83
+#define SD_base0         #839496
+#define SD_base1         #93a1a1
+#define SD_base2         #eee8d5
+#define SD_base3         #fdf6e3
 
 
 ! Light
@@ -46,9 +46,10 @@
 !
 ! URxvt*background:            S_base03
 
+!*fading:                  40
+
 *background:              S_base03
 *foreground:              S_base0
-!*fading:                  40
 *fadeColor:               S_base03
 *cursorColor:             S_base1
 *pointerColorBackground:  S_base01
@@ -71,4 +72,30 @@
 *color14:                 S_base1
 *color15:                 S_base3
 
-URxvt*background:         S_base03_t
+URxvt.background:         S_base03_t
+
+*Dark.background:              SD_base03
+*Dark.foreground:              SD_base0
+*Dark.fadeColor:               SD_base03
+*Dark.cursorColor:             SD_base1
+*Dark.pointerColorBackground:  SD_base01
+*Dark.pointerColorForeground:  SD_base1
+
+*Dark.color0:             SD_base02
+*Dark.color1:             S_red
+*Dark.color2:             S_green
+*Dark.color3:             S_yellow
+*Dark.color4:             S_blue
+*Dark.color5:             S_magenta
+*Dark.color6:             S_cyan
+*Dark.color7:             SD_base2
+*Dark.color8:             SD_base03
+*Dark.color9:             S_orange
+*Dark.color10:            SD_base01
+*Dark.color11:            SD_base00
+*Dark.color12:            SD_base0
+*Dark.color13:            S_violet
+*Dark.color14:            SD_base1
+*Dark.color15:            SD_base3
+
+*Dark.background:         SD_base03_t

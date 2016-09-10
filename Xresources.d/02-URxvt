@@ -7,30 +7,30 @@ URxvt*scrollTtyOutput:   false
 URxvt*scrollWithBuffer:  true
 URxvt*scrollTtyKeypress: true
 
-URxvt.perl-lib:             ~/.dotfiles/urxvt-ext/urxvt-perls/
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,font-size
-URxvt.url-select.launcher:  chromium
-URxvt.url-select.underline: false
-URxvt.keysym.M-u:      perl:url-select:select_next
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s:      perl:keyboard-select:search
+URxvt*perl-lib:             ~/.dotfiles/urxvt-ext/urxvt-perls/
+URxvt*perl-ext-common:      default,clipboard,url-select,keyboard-select,font-size
+URxvt*url-select.launcher:  chromium
+URxvt*url-select.underline: false
+URxvt*keysym.M-u:      perl:url-select:select_next
+URxvt*keysym.M-Escape: perl:keyboard-select:activate
+URxvt*keysym.M-s:      perl:keyboard-select:search
 
 URxvt*keysym.C-S-C:    perl:clipboard:copy
 URxvt*keysym.C-S-V:    perl:clipboard:paste
 URxvt*keysym.M-C-S-V:  perl:clipboard:paste_escaped
 
-URxvt.keysym.C-S-Up:   perl:font-size:increase
-URxvt.keysym.C-S-Down: perl:font-size:decrease
+URxvt*keysym.C-S-Up:   perl:font-size:increase
+URxvt*keysym.C-S-Down: perl:font-size:decrease
 
-!URxvt.font: xft:DejaVu Sans Mono for Powerline-10
-!URxvt.font: xft:Terminus-13
-!URxvt.font: xft:Consolas:size=13, xft:Inconsolata for Powerline
-URxvt.font: xft:DejaVu Sans Mono:size=11:style=Book
-URxvt.letterSpace: -2
+!URxvt*font: xft:DejaVu Sans Mono for Powerline-10
+!URxvt*font: xft:Terminus-13
+!URxvt*font: xft:Consolas:size=13, xft:Inconsolata for Powerline
+URxvt*font: xft:DejaVu Sans Mono:size=16
+URxvt*letterSpace: -2
 
 !URxvt*clipboard.copycmd:  xsel -ib
 !URxvt*clipboard.pastecmd: xsel -ob
 
 URxvt*iso14755: False
 
-URxvt.cutchars: "`\"'&()*,;<=>?@[]^{|}│"
+URxvt*cutchars: "`\"'&()*,;<=>?@[]^{|}│"
