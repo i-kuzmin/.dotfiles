@@ -2,22 +2,29 @@
 
 function term_tmux
 {
-    if [ "$1" == "--detache" ]; then
-        detache="true"
-        shift;
+    #if [ "$1" == "--detache" ]; then
+    #    detache="true"
+    #    shift;
+    #fi
+    if [ "$1" == "--new" ]; then
+        force_new="true"
     fi
 
     session=`tmux list-sessions -F "#{?session_attached,,#{session_id}}" |grep -o '$[0-9]\+' |head -1`
 
-    if [ ! -z "$detache" ]; then
-        term_exec -e -q has-session && exec tmux attach-session -d
+#    if [ ! -z "$detache" ]; then
+#        #term_exec -e -q has-session && exec tmux attach-session -d
+#        term_exec -e tmux new-session
+#
+    if [ ! -z "$force_new" ]; then
+        # fall-back to new session
+        echo ""
 
     elif [ ! -z "$session" ]; then
         term_exec -e tmux attach-session -t "$session"
-
-    else
-        term_exec -e tmux new-session
     fi
+
+    term_exec -e tmux new-session
 }
 
 TERM_DARK="$HOME/.local/var/term.dark"
@@ -42,7 +49,7 @@ function term_exec
         NAME=
     fi
 
-    if which urxvtc; then
+    if which urxvtc && pgrep urxvtd >/dev/null; then
         exec urxvtc $NAME $@
 
     elif which urxvt; then
