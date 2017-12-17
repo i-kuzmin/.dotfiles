@@ -13,6 +13,12 @@ for_window [class="^Pavucontrol$"] floating enabled
 for_window [class="^Blueman-manager$"] floating enabled
 for_window [class="^Vpnui$"] floating enabled
 for_window [class="^VirtualBox$"] border 1pixel
+for_window [class="^Spicy$"] border 1pixel
+for_window [class="^Atom$"] border 1pixel
+for_window [class="[pP]lank"] border none; floating enabled
+for_window [instance ="plank"] floating enable
+for_window [class="^Termite$"] border 1pixel
+
 
 #for_window [class="^Conky$"] border none; floating enable
 
