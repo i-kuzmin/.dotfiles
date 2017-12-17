@@ -3,6 +3,14 @@
 --ignore-file=match:/[.]cscope.*/
 # } --- ignore
 
+# --- Cpp {
+--type-add=cpp:ext:inl,inc
+# } --- cpp
+
+# --- Make {
+--type-add=make:ext:make,Makefile
+# } --- Make
+
 # --- Colors {
 --color-match=bold red on_bright_black
 --color-filename=clear magenta on_bright_black
