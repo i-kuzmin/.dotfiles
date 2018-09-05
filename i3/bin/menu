@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ -e /usr/bin/rofi ]; then
+    exec /usr/bin/rofi -combi-modxi window,runa -show combi
+elif [ -e /usr/bin/dmenu_run ]; then
+    exec /usr/bin/dmenu_run
+fi

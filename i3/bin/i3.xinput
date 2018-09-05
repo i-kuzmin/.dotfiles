@@ -1,0 +1,4 @@
+#!/bin/bash
+#xinput list
+#xinput list-props 11
+exec xinput set-prop 'Apple Wireless Trackpad' 'libinput Tapping Enabled' 1
