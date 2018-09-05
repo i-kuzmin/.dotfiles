@@ -1,22 +1,13 @@
 [user]
-	name = Ilya Kyzmin
+	name = Ilya Kuzmin
 	email = i.g.kuzmin.spb@gmail.com
 [alias]
 	co = checkout
-	br = !git cmd branch
-	ci = commit
 	st = status ./
-	cfg = config --global
-	di = diff ./
-	cmd = !/home/igk/dev/perl/jira.pl git
-	cmdf = !/home/igk/dev/perl/jira.pl git filter
 	up = !git submodule update
 	sw = !sw-git
-	lb = for-each-ref --format='%(refname:short)' --sort=-authordate --count=8 refs/heads/
 	ignore = update-index --assume-unchanged
 	noignore = update-index --no-assume-unchanged
-[core]
-	excludesfile = /home/igk/.gitignore
 [color]
 	branch = true
 	diff = true
