@@ -13,6 +13,3 @@
 [submodule "mutt"]
 	path = mutt
 	url = https://github.com/i-kuzmin/.mutt
-[submodule "urxvt-ext/urxvt-perls"]
-	path = urxvt-ext/urxvt-perls
-	url = https://github.com/muennich/urxvt-perls.git
