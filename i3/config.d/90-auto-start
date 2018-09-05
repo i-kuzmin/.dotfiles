@@ -2,12 +2,10 @@
 # ${HOME}/.config/autostart/*.desktop
 # /etc/xdg/autostart/*.desktop
 
-exec --no-startup-id xargs <~/.xrandr xrandr
 
 exec --no-startup-id dex -ae GNOME
 exec --no-startup-id /usr/bin/xscreensaver -no-splash &
 #exec --no-startup-id setxkbmap -layout us,ru -option grp:shifts_toggle -option ctrl:nocaps && xmodmap `~/.dotfiles/Config ~/.Xmodmap !`
-exec --no-startup-id setxkbmap -layout us,ru -option grp:alt_shift_toggle && xmodmap `~/.dotfiles/Config ~/.Xmodmap !`
 
 exec --no-startup-id pcmanfm --no-desktop -d &
 
@@ -16,9 +14,19 @@ exec --no-startup-id (sleep 1 && feh --bg-tile ~/.background)&
 
 exec --no-startup-id urxvtd -q -f -o
 
-exec --no-startup-id compton -CG \
-    --opacity-rule "97:class_g = 'URxvt'" \
-    --opacity-rule '97:name *= "GVIM"' &
+exec --no-startup-id ~/.i3/bin/i3.compton
+exec --no-startup-id ~/.i3/bin/i3.xmodmap
+exec --no-startup-id ~/.i3/bin/i3.setxkbmap
+exec --no-startup-id ~/.i3/bin/i3.xinput
+
+exec --no-startup-id xxkb
+exec --no-startup-id nm-applet
+exec --no-startup-id volumeicon
+exec --no-startup-id blueman-applet
+
+exec --no-startup-id xargs <~/.xrandr xrandr
+exec --no-startup-id ~/.bin/sw-monitor last
+
 
 #ctrl:swapcaps
 #exec --no-startup-id pcmanfm --desktop

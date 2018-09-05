@@ -11,9 +11,10 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 set $desk desk
 set $desktop_class class="^Pcmanfm$" title="^pcmanfm$"
 
-bindsym $mod+d exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $desk pcmanfm
+set $desk_cmd pcmanfm
+bindsym $mod+d exec --no-startup-id ~/.i3/bin/tools toWS $desk  $desk_cmd
 bindsym $mod+Shift+d move container to workspace $desk, floating enable
-bindsym $mod+$alt+d exec --no-startup-id pcmanfm
+bindsym $mod+$alt+d exec --no-startup-id $desk_cmd
 
 for_window [$desktop_class] border none, floating disabled, focus parent, layout tabbed
 for_window [class="^Pcmanfm$"] border 1pixel
@@ -22,13 +23,14 @@ assign [$desktop_class] $desk
 
 ### WWW Workspace ###
 set $www www
-bindsym $mod+w exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $www chromium
+set $www_cmd chromium
+bindsym $mod+w exec --no-startup-id ~/.i3/bin/tools toWS $www $www_cmd
 bindsym $mod+Shift+w move container to workspace $www
-bindsym $mod+$alt+w exec --no-startup-id chromium
+bindsym $mod+$alt+w exec --no-startup-id $www_cmd
 
 ### Mail Workspace ###
 set $mail mail
-bindsym $mod+m exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $mail thunderbird
+bindsym $mod+m exec --no-startup-id ~/.i3/bin/tools toWS $mail thunderbird
 bindsym $mod+Shift+m move container to workspace $mail
 bindsym $mod+$alt+m exec --no-startup-id thunderbird
 
@@ -39,15 +41,17 @@ bindsym $mod+$alt+m exec --no-startup-id thunderbird
 
 ### Skype Workspace ###
 set $im im
-bindsym $mod+i exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $im skype
+set $im_cmd skype
+bindsym $mod+i exec --no-startup-id ~/.i3/bin/tools toWS $im $im_cmd
 bindsym $mod+Shift+i move container to workspace $im
-bindsym $mod+$alt+i exec --no-startup-id skype
+bindsym $mod+$alt+i exec --no-startup-id $im_cmd
 
 ### Front-end Workspace ###
 set $fe z:front-end
-bindsym $mod+z exec --no-startup-id ~/.dotfiles/i3/bin/tools toWS $fe front-end start
+set $fe_cmd front-end start
+bindsym $mod+z exec --no-startup-id ~/.i3/bin/tools toWS $fe $fe_cmd
 bindsym $mod+Shift+z move container to workspace $im
-bindsym $mod+$alt+z exec --no-startup-id frint-end start
+bindsym $mod+$alt+z exec --no-startup-id $fe_cmd
 
 ### Console Workspace ###
 #set $console console

@@ -18,11 +18,10 @@ font $font
 workspace 1 output $mon1
 workspace 2 output $mon2
 
-
 bar {
         id primary
         font $barFont
-        status_command ~/.dotfiles/i3/bin/run.i3status -n primary
+        status_command ~/.i3/bin/run.i3status -n primary
 #        output $mon1
 #        tray_output $mon1
 }
@@ -30,6 +29,6 @@ bar {
 #bar {
 #        id secondary
 #        font $barFont
-#        status_command ~/.dotfiles/i3/bin/run.i3status -n secondary
+#        status_command ~/.i3/bin/run.i3status -n secondary
 #        output $mon2
 #}

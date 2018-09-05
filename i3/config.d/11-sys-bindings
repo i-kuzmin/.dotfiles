@@ -1,10 +1,10 @@
 ## System Bindings
 
 # reload the configuration file
-bindsym $mod+Shift+c exec --no-startup-id ~/.dotfiles/i3/bin/run.i3 up, reload
+#bindsym $mod+Shift+c exec --no-startup-id ~/.i3/bin/run.i3 up, reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec --no-startup-id ~/.dotfiles/i3/bin/run.i3 up, restart
+bindsym $mod+Shift+r exec --no-startup-id ~/.i3/bin/run.i3 up, reload, restart
 
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -12,7 +12,7 @@ bindsym $mod+Shift+e exec i3-msg exit
 bindsym $mod+Shift+x exec --no-startup-id slimlock
 
 # mod+F2 toggle current screen status bar
-bind $mod+68 exec ~/.dotfiles/i3/bin/tools tgStBar
+bind $mod+68 exec ~/.i3/bin/tools tgStBar
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {

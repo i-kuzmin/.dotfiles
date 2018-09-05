@@ -18,6 +18,7 @@ for_window [class="^Atom$"] border 1pixel
 for_window [class="[pP]lank"] border none; floating enabled
 for_window [instance ="plank"] floating enable
 for_window [class="^Termite$"] border 1pixel
+for_window [class="^nm-connection-editor$"] border 1pixel; floating enable
 
 
 #for_window [class="^Conky$"] border none; floating enable

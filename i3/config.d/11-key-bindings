@@ -33,12 +33,12 @@ bindsym --release Mod1+x exec --no-startup-id xdotool key --clearmodifiers ctrl+
 # Terminal 
 #bindsym $mod+Return exec gnome-terminal
 #bindsym $mod+Return exec ~/.bin/term -e ~/.bin/urxvtc_tmux
-bindsym $mod+Shift+Return exec ~/.dotfiles/i3/bin/term.tmux --new
-bindsym $mod+Return       exec ~/.dotfiles/i3/bin/term.tmux
+bindsym $mod+Shift+Return exec ~/.i3/bin/term.tmux --new
+bindsym $mod+Return       exec ~/.i3/bin/term.tmux
 # || exec tmux new-session -n$USER -s$USER@$HOSTNAME"
 
 # start dmenu (a program launcher)
-bindsym $mod+u exec --no-startup-id dmenu_run  # There also is the (new) i3-dmenu-desktop which only displays applications
+bindsym $mod+u exec --no-startup-id ~/.i3/bin/menu  # There also is the (new) i3-dmenu-desktop which only displays applications
 
 # mod+F3 volume control utility
 bind $mod+69 exec pavucontrol
