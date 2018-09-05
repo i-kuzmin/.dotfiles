@@ -1,0 +1,16 @@
+XXkb.image.path: /usr/share/xxkb/
+XXkb.mainwindow.type: tray
+XXkb.mainwindow.label.enable: yes
+XXkb.mainwindow.enable: yes
+XXkb.mainwindow.appicon: no
+XXkb.mainwindow.geometry: 16x16+0+0
+XXkb.mainwindow.label.background: black
+XXkb.mainwindow.label.foreground: white
+XXkb.mainwindow.label.font: xft:DejaVu Sans Mono:style=bold
+XXkb.mainwindow.label.text.1: En
+XXkb.mainwindow.label.text.2: Ru
+#XXkb.mainwindow.xpm.1: en15.xpm
+#XXkb.mainwindow.xpm.2: ru15.xpm
+XXkb.controls.add_when_start: yes
+XXkb.controls.two_state: no
+XXkb.button.enable: no
