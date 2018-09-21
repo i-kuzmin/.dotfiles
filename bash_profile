@@ -1,18 +1,7 @@
-export EDITOR=vim
-PATH+=":~/.bin"
+#!/bin/bash
 
-#function scan()
-#{
-#    file=$1
-#    if [ -z "$file" ]; then
-#        file=scan.$RANDOM.png
-#    fi
-#
-#    echo write to $file
-#    scanimage -p -v -d snapscan \
-#        --quality-cal=no |pnm2png >$file
-#
-#}
+export EDITOR=vim
+export PATH+=":~/.bin"
 
 ###############################################################################
 # ls/tree colors
@@ -50,65 +39,31 @@ END_COLORS
 export LS_COLORS=$(join_by ':' $ls_basic $ls_files)
 
 ###############################################################################
-# Go language environment
-###############################################################################
-export GOPATH="$HOME/src/golang"
-
-PATH+=:$GOPATH/bin
-
-###############################################################################
-# Java environment 
-###############################################################################
-#export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/
-#PATH+=:$JAVA_HOME/bin
-
-###############################################################################
 # Ruby environment 
 ###############################################################################
+
 RUBY_HOME=$HOME/.gem
-PATH+=:$RUBY_HOME/ruby/2.5.0/bin
+if [ -d $RUBY_HOME ]; then
+    export PATH+=:$RUBY_HOME/ruby/2.5.0/bin
+fi
 
 ###############################################################################
 # Perl environment 
 ###############################################################################
 
-export PERL5LIB=~/.cpan/install:$PERL5LIB
+if [ -d $HOME/.perl5 ]; do
+    eval "$(perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)"
+fi
 
 ###############################################################################
 # Aliases
 ###############################################################################
-#alias chromium='chromium --force-device-scale-factor=1'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
 alias o='nohup xdg-open &>/dev/null'
-alias mimetype='xdg-mime query filetype'
-alias l='ls --color=auto -S'
-alias md='ronn -r -m'
 alias ssh='ssh -XC'
 
 export PAGER=less
 
-chromium_proxy() {
-    killall chromium
-    export http_proxy=http://victoria.tbricks.com:3128/
-    chromium
-}
-
-export amazon='-i .ssh/amazon_webserver.pem ubuntu@ec2-54-72-107-237.eu-west-1.compute.amazonaws.com'
-amazon()
-{
-    ssh $amazon
-}
-
-
-###############################################################################
-# Bash completion
-###############################################################################
-if [ -e /usr/share/bash-completion/bash_completion ];
-then
-    source /usr/share/bash-completion/bash_completion
-fi
-
-export PATH
-
+export PS1="\[\033[02;39m\][\t \[\033[32m\]\u\[\033[00m\]:\[\033[01;39m\]\W\[\033[02;m\]]\[\033[00m\]$ "
