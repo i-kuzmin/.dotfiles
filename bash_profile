@@ -51,7 +51,7 @@ fi
 # Perl environment 
 ###############################################################################
 
-if [ -d $HOME/.perl5 ]; do
+if [ -d $HOME/.perl5 ]; then
     eval "$(perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)"
 fi
 
