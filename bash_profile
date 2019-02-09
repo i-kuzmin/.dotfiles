@@ -2,7 +2,7 @@
 
 base=$(dirname ${BASH_SOURCE[0]})
 export EDITOR=vim
-export PATH+=":$base/.bin"
+export PATH+=":$base/bin"
 
 ###############################################################################
 # ls/tree colors
@@ -47,6 +47,11 @@ RUBY_HOME=$HOME/.gem
 if [ -d $RUBY_HOME ]; then
     export PATH+=:$RUBY_HOME/ruby/2.5.0/bin
 fi
+
+###############################################################################
+# Python environment
+###############################################################################
+PATH+=:$HOME/.local/bin
 
 ###############################################################################
 # Perl environment
