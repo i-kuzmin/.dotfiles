@@ -20,6 +20,20 @@ for_window [instance ="plank"] floating enable
 for_window [class="^Termite$"] border 1pixel
 for_window [class="^nm-connection-editor$"] border 1pixel; floating enable
 
+for_window [class="^Spicy$"] border 1pixel
+for_window [class="^Skype$"] border 1pixel
+for_window [class="^Lxappearance$"] floating enabled
+for_window [class="^Lxappearance$"] border 1pixel
+for_window [class="^Vlc$"] border 1pixel
+for_window [class="^Atom$"] border 1pixel
+
+set $slack_class class="^Slack$"
+for_window [$slack_class] border 1pixel
+assign [$slack_class] $im
+
+set $zoom_class class="^zoom$"
+for_window [$zoom_class] border 1pixel
+assign [$zoom_class] $im
 
 #for_window [class="^Conky$"] border none; floating enable
 
