@@ -68,7 +68,9 @@ alias ssh='ssh -XC'
 # =============================================================================
 # Environments
 export EDITOR=vim
-export PATH+=":$base/.bin"
+if [ -d $base/bin ]; then
+    export PATH+=:$base/bin
+fi
 
 export PAGER=less
 export PS1="\[\033[02;39m\][\t \[\033[32m\]\u\[\033[00m\]@\[\033[36m\]\h\[\033[00m\]:\[\033[01;39m\]\W\[\033[02;m\]]\[\033[00m\]$ "
