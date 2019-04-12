@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+#[[ $- != *i* ]] && return
 
 base=$(dirname ${BASH_SOURCE[0]})
 # =============================================================================
