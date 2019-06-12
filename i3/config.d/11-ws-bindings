@@ -23,7 +23,7 @@ assign [$desktop_class] $desk
 
 ### WWW Workspace ###
 set $www www
-set $www_cmd chromium
+set $www_cmd ~/.i3/bin/i3.www
 bindsym $mod+w exec --no-startup-id $i3_bin/tools toWS $www $www_cmd
 bindsym $mod+Shift+w move container to workspace $www
 bindsym $mod+$alt+w exec --no-startup-id $www_cmd
