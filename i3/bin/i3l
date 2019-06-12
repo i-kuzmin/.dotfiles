@@ -1,0 +1,140 @@
+#!/bin/bash
+
+DEBUG=1
+function DEBUG
+{
+    if [ ! -z "$DEBUG" ]; then
+        echo "-- $@" >/dev/stdout;
+    fi
+}
+
+function exec_first
+{
+    for file in "$@"; do
+        if [ -e "$file" ]; then
+            DEBUG "exec $file";
+            exec "$file";
+        fi
+    done
+}
+
+function cmd_www {
+    exec_first \
+        "/usr/bin/google-chrome-stable" \
+        "/usr/bin/chromium"
+}
+
+function cmd_background {
+    exec feh --bg-tile $HOME/.background
+}
+
+function cmd_compton {
+    exec compton -CG \
+        --opacity-rule "98:class_g = 'URxvt'" \
+        --opacity-rule "98:class_g = 'Atom'" \
+        --opacity-rule '98:name *= "GVIM"' &
+}
+
+function cmd_xinput {
+    #xinput list
+    #xinput list-props 11
+    #exec xinput set-prop 'Apple Wireless Trackpad' 'libinput Tapping Enabled' 1
+    exec xinput set-prop \
+        'Apple Wireless Trackpad' \
+        'Synaptics Tap Action' \
+        1 3 2 1 1 1 1
+}
+
+function cmd_xinput {
+    exec xmodmap $HOME/.Xmodmap
+}
+
+function cmd_setxkbmap {
+    exec setxkbmap \
+        -layout us,ru \
+        -option grp:alt_shift_toggle \
+        -option compose:ralt
+}
+
+function cmd_term {
+    exec ./term "$@"
+}
+
+function cmd_menu {
+    if [ -e /usr/bin/rofi ]; then
+        exec /usr/bin/rofi -combi-modxi window,runa -show combi
+    elif [ -e /usr/bin/dmenu_run ]; then
+        exec /usr/bin/dmenu_run
+    fi
+}
+
+function cmd_backlight {
+    xbacklight "$@"
+}
+
+function cmd_mixer {
+    exec pavucontrol
+}
+
+function cmd_volume {
+    local cmd="$1"; shift;
+    DEBUG $cmd;
+    case $cmd in
+    toggle_mute)
+        exec pactl set-sink-mute 0 toggle;; 
+    set)
+		#exec amixer -q set Master 5%+                                                                             
+		#exec amixer -q set Master 5%-                                                                             
+		#exec amixer -q sset Master toggle
+        exec pactl set-sink-volume 0 $1% ;;
+    *)
+        echo "Unexpected volume '$cmd'"
+    esac
+}
+
+function cmd_prnt_scrn {
+	exec xfce4-screenshooter "$@"
+}
+
+function cmd {
+    local cmd=$1; shift;
+    DEBUG "$cmd";
+    case "$cmd" in
+    www)
+        cmd_www "$@";;
+    compton)
+        cmd_compton $@;;
+    backlight)
+        cmd_backlight "$@";;
+    volume)
+        cmd_volume "$@";;
+    xinput)
+        cmd_xinput "$@";;
+    xmodmap)
+        cmd_xmodmap "$@";;
+    setxkbmap)
+        cmd_setxkbmap "$@";;
+    term)
+        cmd_term "$@";;
+    background)
+        cmd_background "$@";;
+    menu)
+        cmd_menu "$@";;
+    mixer)
+        cmd_mixer "$@";;
+	prnt_scrn)
+		cmd_prnt_scrn "$@";;
+    *)
+        cmd_help;;
+    esac
+}
+
+function main {
+    if [[ "$0" =~ /i3.([0-9a-zA-Z_]+)$ ]]; then 
+        cmd "${BASH_REMATCH[1]}" "$@"; 
+        exit 0;
+    fi
+    cmd "$@"
+}
+
+main "$@"

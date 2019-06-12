@@ -1,5 +1,1 @@
-#!/bin/bash
-exec compton -CG \
-    --opacity-rule "98:class_g = 'URxvt'" \
-    --opacity-rule "98:class_g = 'Atom'" \
-    --opacity-rule '98:name *= "GVIM"' &
+i3l

@@ -1,20 +1,19 @@
 # Multimedia Keys
-# Volue Control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% && killall -SIGUSR1 i3status
-#bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% && killall -SIGUSR1 i3status
-#bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-#bindsym XF86AudioMute exec amixer -q sset Master toggle
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id $i3_ volume set +5
+bindsym XF86AudioLowerVolume exec --no-startup-id $i3_ volume set -5
+bindsym XF86AudioMute exec --no-startup-id $i3_ volume toggle_mute
+
+bindsym XF86MonBrightnessUp   exec --no-startup-id $i3_ backlight +5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id $i3_ backlight -5 # decrease screen brightness
 
 # Display Keys
 #bindsym 67 exec ~/.bin/sw-monitor toggle_press
 #bindsym --release F2 exec ~/.bin/sw-monitor toggle_release
 
 # System Keys
-bindsym Print exec xfce4-screenshooter -f
-bindsym Mod2+Print exec xfce4-screenshooter -r
-bindsym Mod1+Print exec xfce4-screenshooter -w
+bindsym Print exec --no-startup-id $i3_ prnt_scrn -f
+bindsym Mod2+Print --no-startup-id $i3_ prnt_scrn -r
+bindsym Mod1+Print --no-startup-id $i3_ prnt_scrn -w
 
 # Monitors
 #bindsym Super_L+XF86Display exec switch-monitor  
@@ -31,16 +30,13 @@ bindsym --release Mod1+x exec --no-startup-id xdotool key --clearmodifiers ctrl+
 
 
 # Terminal 
-#bindsym $mod+Return exec gnome-terminal
-#bindsym $mod+Return exec ~/.bin/term -e ~/.bin/urxvtc_tmux
-bindsym $mod+Shift+Return exec ~/.i3/bin/term.tmux --new
-bindsym $mod+Return       exec ~/.i3/bin/term.tmux
-# || exec tmux new-session -n$USER -s$USER@$HOSTNAME"
+bindsym $mod+Shift+Return exec $i3_bin/term.tmux --new
+bindsym $mod+Return       exec $i3_bin/term.tmux
 
 # start dmenu (a program launcher)
-bindsym $mod+u exec --no-startup-id ~/.i3/bin/menu  # There also is the (new) i3-dmenu-desktop which only displays applications
+bindsym $mod+u exec --no-startup-id $i3_ menu  # There also is the (new) i3-dmenu-desktop which only displays applications
 
 # mod+F3 volume control utility
-bind $mod+69 exec pavucontrol
+bind $mod+69 exec $i3_ mixer
 
 # vim: ft=config

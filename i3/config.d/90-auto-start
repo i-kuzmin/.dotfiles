@@ -4,31 +4,26 @@
 
 
 exec --no-startup-id dex -ae GNOME
-exec --no-startup-id /usr/bin/xscreensaver -no-splash &
-#exec --no-startup-id setxkbmap -layout us,ru -option grp:shifts_toggle -option ctrl:nocaps && xmodmap `~/.dotfiles/Config ~/.Xmodmap !`
+#exec --no-startup-id /usr/bin/xscreensaver -no-splash &
 
 exec --no-startup-id pcmanfm --no-desktop -d &
-
 exec --no-startup-id conky -c ~/.conky/clock &>/dev/null &
-exec --no-startup-id (sleep 1 && feh --bg-tile ~/.background)&
-
 exec --no-startup-id urxvtd -q -f -o
 
-exec --no-startup-id ~/.i3/bin/i3.compton
-exec --no-startup-id ~/.i3/bin/i3.xmodmap
-exec --no-startup-id ~/.i3/bin/i3.setxkbmap
-exec --no-startup-id ~/.i3/bin/i3.xinput
-exec --no-startup-id ~/.i3/bin/i3.background
+exec --no-startup-id $i3_ compton
+exec --no-startup-id $i3_ xmodmap
+exec --no-startup-id $i3_ setxkbmap
+exec --no-startup-id $i3_ xinput
+exec --no-startup-id $i3_ background
 
-exec --no-startup-id xxkb
 exec --no-startup-id nm-applet
-exec --no-startup-id volumeicon
 exec --no-startup-id blueman-applet
-exec --no-startup-id cbatticon
+#exec --no-startup-id xxkb
+#exec --no-startup-id volumeicon
+#exec --no-startup-id cbatticon
 
 exec --no-startup-id xargs <~/.xrandr xrandr
 exec --no-startup-id ~/.bin/sw-monitor last
-
 
 #ctrl:swapcaps
 #exec --no-startup-id pcmanfm --desktop

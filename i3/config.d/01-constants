@@ -1,10 +1,12 @@
-set $mon1 LVDS-1
-set $mon2 DP-1
+set $mon1 eDP1
+set $mon2 DP1
 
 set $bgImage /home/iku/media/pictures/background.jpg
 
 set $barFont pango:DejaVu Sans Mono, Icons 9
 
 set $font pango:DejaVu Sans, Icons 9
+set $i3_bin ~/.i3/bin/
+set $i3_ ~/.i3/bin/i3l
 
 # vim: ft=conf
