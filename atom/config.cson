@@ -1,5 +1,6 @@
 "*":
   core:
+    autoHideMenuBar: true
     telemetryConsent: "no"
     themes: [
       "one-light-ui"
@@ -7,6 +8,7 @@
     ]
   editor:
     fontSize: 21
+    scrollPastEnd: true
   "exception-reporting":
     userId: "91572411-85fb-43cc-8e16-3edd76d2efc6"
   latex:
