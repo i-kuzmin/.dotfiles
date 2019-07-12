@@ -1,0 +1,21 @@
+"*":
+  core:
+    telemetryConsent: "no"
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
+  editor:
+    fontSize: 21
+  "exception-reporting":
+    userId: "91572411-85fb-43cc-8e16-3edd76d2efc6"
+  latex:
+    engine: "xelatex"
+    producer: "ps2pdf"
+  "spell-check":
+    locales: [
+      "en-US"
+      "ru-RU"
+    ]
+  welcome:
+    showOnStartup: false
