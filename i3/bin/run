@@ -11,7 +11,7 @@ function run_i3() {
         local config=$1; shift;
         local cmd="i3 -c $config $@"
         log_debug "execute: $cmd"
-        $cmd
+        exec $cmd
     }
 
     config_main "i3.config" "~/.dotfiles/i3/config.d/*" $@
@@ -24,7 +24,7 @@ function run_i3status() {
         local config=$1; shift;
         local cmd="i3status -c $config $@"
         log_debug "execute: $cmd"
-        $cmd
+        exec $cmd
     }
 
     local name=

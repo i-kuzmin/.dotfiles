@@ -12,20 +12,21 @@ function exec_first
 {
     for file in "$@"; do
         if [ -e "$file" ]; then
-            DEBUG "exec $file";
-            exec "$file";
+            DEBUG "exec $file $WWW_ARG";
+            exec "$file" "$WWW_ARG";
         fi
     done
 }
 
 function cmd_www {
+    WWW_ARG="$@"
     exec_first \
         "/usr/bin/google-chrome-stable" \
         "/usr/bin/chromium"
 }
 
 function cmd_background {
-    exec feh --bg-tile $HOME/.background
+    exec feh --bg-center --bg-fill $HOME/.background
 }
 
 function cmd_compton {
@@ -39,13 +40,17 @@ function cmd_xinput {
     #xinput list
     #xinput list-props 11
     #exec xinput set-prop 'Apple Wireless Trackpad' 'libinput Tapping Enabled' 1
-    exec xinput set-prop \
-        'Apple Wireless Trackpad' \
+    #'Apple Wireless Trackpad' \
+    # 'SynPS/2 Synaptics TouchPad' \
+    #    'Apple Wireless Trackpad' \
+    xinput set-prop \
+        12 \
         'Synaptics Tap Action' \
         1 3 2 1 1 1 1
+    xinput set-prop 12  'Synaptics Palm Detection' 1
 }
 
-function cmd_xinput {
+function cmd_xmodmap {
     exec xmodmap $HOME/.Xmodmap
 }
 
@@ -81,10 +86,10 @@ function cmd_volume {
     DEBUG $cmd;
     case $cmd in
     toggle_mute)
-        exec pactl set-sink-mute 0 toggle;; 
+        exec pactl set-sink-mute 0 toggle;;
     set)
-		#exec amixer -q set Master 5%+                                                                             
-		#exec amixer -q set Master 5%-                                                                             
+		#exec amixer -q set Master 5%+
+		#exec amixer -q set Master 5%-
 		#exec amixer -q sset Master toggle
         exec pactl set-sink-volume 0 $1% ;;
     *)
@@ -130,8 +135,8 @@ function cmd {
 }
 
 function main {
-    if [[ "$0" =~ /i3.([0-9a-zA-Z_]+)$ ]]; then 
-        cmd "${BASH_REMATCH[1]}" "$@"; 
+    if [[ "$0" =~ /i3.([0-9a-zA-Z_]+)$ ]]; then
+        cmd "${BASH_REMATCH[1]}" "$@";
         exit 0;
     fi
     cmd "$@"

@@ -1,6 +1,6 @@
 [user]
 	name = Ilya Kuzmin
-	email = i.g.kuzmin.spb@gmail.com
+	email = Ilya.Kuzmin@itiviti.com
 [alias]
 	co = checkout
 	st = status ./
@@ -18,5 +18,3 @@
 	blame = true
 [push]
 	default = simple
-[include]
-	path = ~/.gitconfig.local

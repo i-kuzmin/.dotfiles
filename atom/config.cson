@@ -1,23 +1,52 @@
 "*":
+  "autocomplete-clang":
+    "std c++": "c++17"
+  "build-cmake":
+    buildRoot: "${projectDir}/build"
   core:
     autoHideMenuBar: true
+    disabledPackages: [
+      "autocomplete-plus"
+      "spell-check"
+      "build-cmake"
+    ]
+    packagesWithKeymapsDisabled: []
     telemetryConsent: "no"
     themes: [
       "one-light-ui"
       "solarized-light-syntax"
     ]
   editor:
-    fontSize: 21
+    defaultFontSize: 15
+    fontSize: 18
     scrollPastEnd: true
   "exception-reporting":
     userId: "91572411-85fb-43cc-8e16-3edd76d2efc6"
   latex:
-    engine: "xelatex"
+    buildOnSave: true
+    opener: "zathura"
+    outputDirectory: "build"
     producer: "ps2pdf"
+  "linter-clang":
+    clangDefaultCppFlags: "-Wall -std=c++17"
+  "linter-ui-default":
+    showPanel: true
   "spell-check":
     locales: [
       "en-US"
       "ru-RU"
     ]
+  "tree-view":
+    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
+".c.source":
+  editor:
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 4
+".cpp.source":
+  editor:
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 4

@@ -7,9 +7,9 @@ URxvt*scrollTtyOutput:   false
 URxvt*scrollWithBuffer:  true
 URxvt*scrollTtyKeypress: true
 
-!URxvt*perl-lib:            ~/.dotfiles/urxvt-ext/urxvt-font-size/
+URxvt*perl-lib:            ~/.dotfiles/urxvt-ext/urxvt-font-size
 URxvt*perl-ext-common:      default,clipboard,url-select,keyboard-select,font-size
-URxvt*url-select.launcher:  chromium
+URxvt*url-select.launcher:  /usr/bin/google-chrome-stable
 URxvt*url-select.underline: false
 URxvt*keysym.M-u:      perl:url-select:select_next
 URxvt*keysym.M-Escape: perl:keyboard-select:activate

@@ -46,7 +46,8 @@ export LS_COLORS=$(join_by ':' $ls_basic $ls_files)
 # Ruby environment
 RUBY_HOME=$HOME/.gem
 if [ -d $RUBY_HOME ]; then
-    export PATH+=:$RUBY_HOME/ruby/2.5.0/bin
+    #export PATH+=:$RUBY_HOME/ruby/2.5.0/bin
+    export PATH+=:$RUBY_HOME/ruby/2.7.0/bin
 fi
 
 ###############################################################################
@@ -58,7 +59,8 @@ PATH+=:$HOME/.local/bin
 # -----------------------------------------------------------------------------
 # =============================================================================
 # Perl environment
-eval "$(perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)"
+#!!!
+#eval "$(perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)"
 # -----------------------------------------------------------------------------
 # =============================================================================
 # i3 tools

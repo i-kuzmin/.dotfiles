@@ -22,13 +22,16 @@ bar {
         id primary
         font $barFont
         status_command ~/.dotfiles/i3/bin/run.i3status -n primary
-        output $mon1
-        tray_output $mon1
+#        output $mon1
+#        tray_output $mon1
+#        output primary
+        tray_output primary
 }
 
 #bar {
 #        id secondary
 #        font $barFont
-#        status_command ~/.i3/bin/run.i3status -n secondary
-#        output $mon2
+#        output DP1
+#        output DP3
+##        output eDP1
 #}
