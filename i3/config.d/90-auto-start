@@ -15,6 +15,7 @@ exec --no-startup-id $i3_ xmodmap
 exec --no-startup-id $i3_ setxkbmap
 exec --no-startup-id $i3_ xinput
 exec --no-startup-id $i3_ background
+exec --no-startup-id $i3_ clipboard daemon
 
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet

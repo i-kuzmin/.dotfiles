@@ -101,6 +101,17 @@ function cmd_prnt_scrn {
 	exec xfce4-screenshooter "$@"
 }
 
+function cmd_clipboard {
+    local cmd=$1; shift;
+    if [ "$cmd" == "daemon" ]; then
+        if ! which clipmenud >/dev/null; then
+            return
+        fi
+        exec clipmenud;
+    fi
+    exec clipmenu
+}
+
 function cmd {
     local cmd=$1; shift;
     DEBUG "$cmd";
@@ -129,6 +140,8 @@ function cmd {
         cmd_mixer "$@";;
 	prnt_scrn)
 		cmd_prnt_scrn "$@";;
+    clipboard)
+        cmd_clipboard "$@";;
     *)
         cmd_help;;
     esac

@@ -6,6 +6,8 @@ bindsym XF86AudioMute exec --no-startup-id $i3_ volume toggle_mute
 bindsym XF86MonBrightnessUp   exec --no-startup-id $i3_ backlight +5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id $i3_ backlight -5 # decrease screen brightness
 
+bindsym $mod+p exec --no-startup-id $i3_ clipboard
+
 # Display Keys
 #bindsym 67 exec ~/.bin/sw-monitor toggle_press
 #bindsym --release F2 exec ~/.bin/sw-monitor toggle_release
@@ -32,6 +34,17 @@ bindsym --release Mod1+x exec --no-startup-id xdotool key --clearmodifiers ctrl+
 # Terminal 
 bindsym $mod+Shift+Return exec $i3_bin/term.tmux --new
 bindsym $mod+Return       exec $i3_bin/term.tmux
+
+# mod+F5
+bind $mod+71 exec $i3_bin/term
+#set $mode_ssh (i) idev,
+#mode "$mode_ssh" {
+#    bindsym e exec $i3_bin/term.tmux tmux.epeec02
+#    bindsym q mode "default"
+#    bindsym Escape mode "default"
+#    bindsym Return mode "default"
+#}
+#bindsym $mod+72 mode "$mode_ssh"
 
 # start dmenu (a program launcher)
 bindsym $mod+u exec --no-startup-id $i3_ menu  # There also is the (new) i3-dmenu-desktop which only displays applications
