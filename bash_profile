@@ -3,6 +3,20 @@
 # If not running interactively, don't do anything
 #[[ $- != *i* ]] && return
 
+if [ "$(uname)" == "Darwin" ]; then # MacOS --- {{{
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+
+    export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_AUTO_UPDATE_SECS=3000
+
+    if [ -f "/opt/homebrew/bin/brew" ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+
+    alias vim='$(brew --prefix)/bin/vim'
+fi # }}} --- End Darwin
+
+
 base=$(dirname ${BASH_SOURCE[0]})
 export EDITOR=vim
 export PATH+=":$base/bin"
@@ -87,4 +101,4 @@ export PAGER=less
 export PS1="\[\033[02;39m\][\t \[\033[32m\]\u\[\033[00m\]@\[\033[36m\]\h\[\033[00m\]:\[\033[01;39m\]\W\[\033[02;m\]]\[\033[00m\]$ "
 # -----------------------------------------------------------------------------
 
-# vim: foldmethod=marker
+# vim: fdm=marker
