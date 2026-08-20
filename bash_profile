@@ -20,6 +20,8 @@ fi # }}} --- End Darwin
 base=$(dirname ${BASH_SOURCE[0]})
 export EDITOR=vim
 export PATH+=":$base/bin"
+
+source $base/bash/tmx
 # =============================================================================
 # ls/tree colors --- {{{
 

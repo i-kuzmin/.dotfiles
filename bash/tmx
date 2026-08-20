@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function tmx-bind
+{
+    export TMX_TARGET="$1"
+}
+
+function tmx
+{
+    local target=$TMX_TARGET
+    if [ -z "$target" ]; then
+        target=$1; shift
+    fi
+
+    local cmd="$*"
+    tmux send-keys -l -t "$target" "$cmd" &&
+        tmux send-keys -t "$target" Enter
+}
+
