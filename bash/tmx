@@ -2,7 +2,23 @@
 
 function tmx-bind
 {
-    export TMX_TARGET="$1"
+    if [ ! -z "$1" ] && ! tmux has-session -t "$1" 2>/dev/null; then
+        echo "'$1' tmux pane doesn't exist"
+    else
+        export TMX_TARGET="$1"
+    fi
+}
+
+if which fzf >/dev/null; then
+function tmx-pick
+{
+    export TMX_TARGET=$(tmux list-panes -a -F "#S:#W.#P" | fzf --prompt="select tmux pane: ")
+}
+fi
+
+function tmx-list
+{
+    tmux list-panes -a -F "#S:#W.#P"
 }
 
 function tmx
@@ -12,7 +28,7 @@ function tmx
         target=$1; shift
     fi
 
-    local cmd="$*"
+    local cmd=$*
     tmux send-keys -l -t "$target" "$cmd" &&
         tmux send-keys -t "$target" Enter
 }
